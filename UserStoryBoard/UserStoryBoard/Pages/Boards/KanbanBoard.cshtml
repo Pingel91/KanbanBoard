@@ -2,14 +2,14 @@
 @using global::UserStoryBoard.Models
 @model UserStoryBoard.Pages.KanbanBoardModel
 @{
-    <h1>Kanban Board @Model.currentId</h1>
+    <h1>@Model.KanbanBoards[Model.currentId].BoardName</h1>
     <div class="jumbotron">
         <div class="container">
             <div class="row align-items-start">
-                @for (int i = 0; i < Model.KanbanBoards.Count; i++)
+                @for (int i = 0; i < Model.KanbanBoards[Model.currentId].Columns; i++)
                 {
                     <div class="col-4">
-                    <h2>@Model.KanbanBoards[i].Name</h2>
+                    <h2>@Model.KanbanBoards[Model.currentId].ColumnNames[i]</h2>
                     @foreach (UserStory userStory in Model.UserStories)
                     {
                         @if (userStory.ColumnId == i)

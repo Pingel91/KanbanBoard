@@ -18,9 +18,9 @@ namespace UserStoryBoard.Pages
         public List<UserStory> UserStories { get; private set; }
         public List<Board> KanbanBoards = new List<Board>()
         {
-            new Board("Kanban Board 1"),
-            new Board("Caspars Test Board"),
-            new Board("Board")
+            new Board("Kanban Board 1", new List<string>() {"To Do", "Doing", "Done"}, 3),
+            new Board("Caspars Test Board", new List<string>() {"To Do", "Doing", "Done"}, 3),
+            new Board("Board", new List<string>() {"To Do", "Doing", "Done"}, 3)
         };
 
         public KanbanBoardModel(UserStoryService userStoryService)
@@ -29,7 +29,7 @@ namespace UserStoryBoard.Pages
         }
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStories();
+            UserStories = userStoryService.GetUserStories(); // SELECTS THE SAME USER STORIES FOR ALL BOARDS - NEEDS TO GO THROUGH THE NEW BoardService
             currentId = id;
         }
     }

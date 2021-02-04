@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UserStoryBoard.Models;
 
 namespace UserStoryBoard.Models
 {
     public class Board
     {
-        public string Name { get; set; }
+        public string BoardName { get; set; }
+        public int Columns { get; set; }
+        public List<string> ColumnNames { get; set; }
+        public List<UserStory> userStoriesOnBoard { get; set; }
 
         public Board()
         { }
 
-        public Board(string name)
+        public Board(string name, List<string> colNames, int cols)
         {
-            Name = name;
+            BoardName = name;
+            Columns = cols;
+            ColumnNames = colNames;
         }
     }
 }

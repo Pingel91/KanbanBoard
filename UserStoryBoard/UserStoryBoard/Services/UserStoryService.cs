@@ -10,10 +10,12 @@ namespace UserStoryBoard.Services
     public class UserStoryService
     {
         private List<UserStory> userStories;
+        private JsonFileUserStoryService JsonFileUserStoryService { get; set; }
 
-        public UserStoryService()
+        public UserStoryService(JsonFileUserStoryService jsonFileUserStoryService)
         {
-            userStories = MockUserStories.GetMockUserStories();
+            JsonFileUserStoryService = jsonFileUserStoryService;
+            userStories = JsonFileUserStoryService.GetJsonUserStory().ToList();
         }
 
         public List<UserStory> GetUserStories()
@@ -46,6 +48,7 @@ namespace UserStoryBoard.Services
             if (userStoryToBeDeleted !=null)
             {
                 userStories.Remove(userStoryToBeDeleted);
+                JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
             return userStoryToBeDeleted;
         }
@@ -60,14 +63,15 @@ namespace UserStoryBoard.Services
                     if (userStories[i].Id == userStory.Id)
                     {
                         userStories[i] = userStory;
-                        break;
                     }
                 }
+                JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
         }
         public void AddUserStory(UserStory aUserStory)
         {
             userStories.Add(aUserStory);
+            JsonFileUserStoryService.SaveJsonUserStories(userStories);
 
         }
     }

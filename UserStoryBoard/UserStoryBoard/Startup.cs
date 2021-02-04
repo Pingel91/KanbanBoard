@@ -24,6 +24,7 @@ namespace UserStoryBoard
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
             services.AddSingleton<UserStoryService, UserStoryService>();
+            services.AddTransient<JsonFileUserStoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

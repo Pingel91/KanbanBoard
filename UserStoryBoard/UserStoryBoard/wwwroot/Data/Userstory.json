@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Title": "Creating an UserStory",
+    "Description": "Bla bla bla",
+    "BusinessValue": 2,
+    "CreationDate": "2021-04-02T00:00:00",
+    "Priority": 1,
+    "StoryPoints": "Large",
+    "Column": 0
+  },
+  {
+    "Id": 2,
+    "Title": "Creating an DeleteUserStory",
+    "Description": "Bla bla bla bla bla",
+    "BusinessValue": 1,
+    "CreationDate": "2021-05-02T00:00:00",
+    "Priority": 2,
+    "StoryPoints": "Small",
+    "Column": 0
+  },
+  {
+    "Id": 0,
+    "Title": "Create Mig",
+    "Description": "Hej HEj",
+    "BusinessValue": 3,
+    "CreationDate": "0001-01-01T00:00:00",
+    "Priority": 6,
+    "StoryPoints": "Small",
+    "Column": 0
+  }
+]

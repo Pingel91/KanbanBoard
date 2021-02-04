@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace UserStoryBoard.Models
 {
@@ -22,13 +23,13 @@ namespace UserStoryBoard.Models
             nextId++;
         }
 
-        public UserStory(string title, string description, int businessValue, DateTime creationDate, int priority, string storyPoints)
+        public UserStory(string title, string description, int businessValue, int priority, string storyPoints)
         {
             Id = nextId++;
             Title = title;
             Description = description;
             BusinessValue = businessValue;
-            CreationDate = creationDate;
+            CreationDate = DateAndTime.Now;
             Priority = priority;
             StoryPoints = storyPoints;
         } 

@@ -50,6 +50,7 @@ namespace UserStoryBoard.Services
             return userStoryToBeDeleted;
         }
 
+<<<<<<< HEAD
         public UserStory UpdateUserStory(UserStory userStory)
         {
             if (userStory != null)
@@ -81,6 +82,11 @@ namespace UserStoryBoard.Services
             }
 
             return null;
+=======
+        public void AddUserStory(UserStory aUserStory)
+        {
+            userStories.Add(aUserStory);
+>>>>>>> 8c016f864b9df212481c96d318fbc5a6430e2802
         }
     }
 }

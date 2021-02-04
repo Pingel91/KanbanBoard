@@ -9,8 +9,6 @@ namespace UserStoryBoard.Services
 {
     public class UserStoryService
     {
-        public enum ColumnType { Todo, Doing, Done }
-
         private List<UserStory> userStories;
 
         public UserStoryService()
@@ -51,8 +49,6 @@ namespace UserStoryBoard.Services
             }
             return userStoryToBeDeleted;
         }
-
-
 
         public void UpdateUserStory(UserStory userStory)
         {

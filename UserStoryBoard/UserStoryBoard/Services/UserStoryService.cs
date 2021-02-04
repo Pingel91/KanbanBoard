@@ -52,9 +52,42 @@ namespace UserStoryBoard.Services
             return userStoryToBeDeleted;
         }
 
+
+
+        public void UpdateUserStory(UserStory userStory)
+        {
+            if (userStory != null)
+            {
+
+                for (int i = 0; i < userStories.Count; i++)
+                {
+                    if (userStories[i].Id == userStory.Id)
+                    {
+                        userStories[i] = userStory;
+                        break;
+                    }
+                }
+                //foreach (UserStory u in userStories)
+                //{
+                //    if (u.Id == userStory.Id)
+                //    {
+                //        userStori
+                //        //u.Title = userStory.Title;
+                //        //u.Description = userStory.Description;
+                //        //u.BusinessValue = userStory.BusinessValue;
+                //        //u.CreationDate = userStory.CreationDate;
+                //        //u.Priority = userStory.Priority;
+                //        //u.StoryPoints = userStory.StoryPoints;
+                //    }
+                //}
+
+
+            }
+        }
         public void AddUserStory(UserStory aUserStory)
         {
             userStories.Add(aUserStory);
+
         }
     }
 }

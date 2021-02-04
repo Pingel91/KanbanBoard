@@ -1,0 +1,47 @@
+﻿@page "{id:int}"
+@model UserStoryBoard.Pages.UserStories.EditUserStoryModel
+@{
+}
+
+<h1>Edit UserStory</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.UserStory.Id" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.Title" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.Description" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.BusinessValue" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.BusinessValue" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.CreationDate" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.CreationDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.Priority" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.Priority" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.UserStory.StoryPoints" class="control-lable"></label>
+                <input asp-for="@Model.UserStory.StoryPoints" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-page="/UserStories">Back to UserStory Page</a>
+</div>

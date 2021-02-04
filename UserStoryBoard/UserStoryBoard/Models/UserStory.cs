@@ -33,7 +33,5 @@ namespace UserStoryBoard.Models
             Priority = priority;
             StoryPoints = storyPoints;
         } 
-        
-
     }
 }

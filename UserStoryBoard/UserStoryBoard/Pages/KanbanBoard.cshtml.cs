@@ -11,6 +11,8 @@ namespace UserStoryBoard.Pages
 {
     public class KanbanBoardModel : PageModel
     {
+        public int currentId = 0;
+
         private UserStoryService userStoryService;
 
         public List<UserStory> UserStories { get; private set; }
@@ -19,9 +21,10 @@ namespace UserStoryBoard.Pages
         {
             this.userStoryService = userStoryService;
         }
-        public void OnGet()
+        public void OnGet(int id)
         {
             UserStories = userStoryService.GetUserStories();
+            currentId = id;
         }
     }
 }

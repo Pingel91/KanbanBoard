@@ -35,7 +35,7 @@ namespace UserStoryBoard.Pages.UserStories
             {
                 return Page();
             }
-            UserStory = userStoryService.UpdateUserStory(UserStory);
+            userStoryService.UpdateUserStory(UserStory);
 
             return RedirectToPage("UserStories");
         }

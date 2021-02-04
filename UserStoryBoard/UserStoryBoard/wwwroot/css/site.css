@@ -9,7 +9,16 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #ffffff;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+html {
+    color: #ffffff;
 }
 
 .btn-primary {

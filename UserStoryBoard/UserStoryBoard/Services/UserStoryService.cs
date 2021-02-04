@@ -18,7 +18,7 @@ namespace UserStoryBoard.Services
 
         public List<UserStory> GetUserStories()
         {
-            return userStories;
+            return userStories; 
         }
 
         public UserStory GetUserStory(int id)
@@ -50,8 +50,6 @@ namespace UserStoryBoard.Services
             return userStoryToBeDeleted;
         }
 
-
-
         public void UpdateUserStory(UserStory userStory)
         {
             if (userStory != null)
@@ -65,20 +63,6 @@ namespace UserStoryBoard.Services
                         break;
                     }
                 }
-                //foreach (UserStory u in userStories)
-                //{
-                //    if (u.Id == userStory.Id)
-                //    {
-                //        u.Title = userStory.Title;
-                //        u.Description = userStory.Description;
-                //        u.BusinessValue = userStory.BusinessValue;
-                //        u.CreationDate = userStory.CreationDate;
-                //        u.Priority = userStory.Priority;
-                //        u.StoryPoints = userStory.StoryPoints;
-                //    }
-                //}
-
-
             }
         }
         public void AddUserStory(UserStory aUserStory)

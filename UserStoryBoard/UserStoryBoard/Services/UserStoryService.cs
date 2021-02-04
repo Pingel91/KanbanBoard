@@ -65,21 +65,6 @@ namespace UserStoryBoard.Services
                         break;
                     }
                 }
-                //foreach (UserStory u in userStories)
-                //{
-                //    if (u.Id == userStory.Id)
-                //    {
-                //        userStori
-                //        //u.Title = userStory.Title;
-                //        //u.Description = userStory.Description;
-                //        //u.BusinessValue = userStory.BusinessValue;
-                //        //u.CreationDate = userStory.CreationDate;
-                //        //u.Priority = userStory.Priority;
-                //        //u.StoryPoints = userStory.StoryPoints;
-                //    }
-                //}
-
-
             }
         }
         public void AddUserStory(UserStory aUserStory)

@@ -1,0 +1,12 @@
+﻿@page "{id:int}" 
+@model UserStoryBoard.Pages.DeleteUserStoryModel
+@{
+}
+<h1>Delete Confirmation</h1>
+<div class="alert alert-danger">
+    <h5>Are you sure you want to delete the UserStory - @Model.UserStory.Title</h5>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-primary" asp-page="/UserStories">No</a>
+    </form>
+</div>

@@ -1,0 +1,58 @@
+﻿@page
+@model UserStoryBoard.Pages.UserStoryDetailModel
+@{
+    <h1>User Stories</h1>
+    foreach (var userStory in @Model.UserStories) 
+    {
+        <div class="card mb-2" style="width: 30rem">
+            <div class="card-header p-2">
+                <h5 class="card-title"><small class="text-muted">(@userStory.Id)</small> @userStory.Title</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">@userStory.Description</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <button id="myModalBtn" class="btn" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-info-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title"><small class="text-muted">@Model.UserStory.Id</small>@Model.UserStory.Title</h5>
+                        <a type="button" class="close" asp-page="UserStories">&times;</a>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><b>Describtion:</b> @Model.UserStory.Description</p>
+                        <p><b>Business Value:</b> @Model.UserStory.BusinessValue</p>
+                        <p><b>Creation Date:</b> @Model.UserStory.CreationDate</p>
+                        <p><b>Priority:</b> @Model.UserStory.Priority</p>
+                        <p><b>Story Points:</b> @Model.UserStory.StoryPoints</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-danger" asp-page="UserStories">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal({ backdrop: "static" });
+            $("#myModal").modal('show');
+        });
+    </script>
+}

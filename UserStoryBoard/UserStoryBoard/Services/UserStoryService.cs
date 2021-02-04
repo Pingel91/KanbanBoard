@@ -10,15 +10,17 @@ namespace UserStoryBoard.Services
     public class UserStoryService
     {
         private List<UserStory> userStories;
+        private JsonFileUserStoryService JsonFileUserStoryService { get; set; }
 
-        public UserStoryService()
+        public UserStoryService(JsonFileUserStoryService jsonFileUserStoryService)
         {
-            userStories = MockUserStories.GetMockUserStories();
+            JsonFileUserStoryService = jsonFileUserStoryService;
+            userStories = JsonFileUserStoryService.GetJsonUserStory().ToList();
         }
 
         public List<UserStory> GetUserStories()
         {
-            return userStories;
+            return userStories; 
         }
 
         public UserStory GetUserStory(int id)
@@ -46,11 +48,10 @@ namespace UserStoryBoard.Services
             if (userStoryToBeDeleted !=null)
             {
                 userStories.Remove(userStoryToBeDeleted);
+                JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
             return userStoryToBeDeleted;
         }
-
-
 
         public void UpdateUserStory(UserStory userStory)
         {
@@ -62,29 +63,15 @@ namespace UserStoryBoard.Services
                     if (userStories[i].Id == userStory.Id)
                     {
                         userStories[i] = userStory;
-                        break;
                     }
                 }
-                //foreach (UserStory u in userStories)
-                //{
-                //    if (u.Id == userStory.Id)
-                //    {
-                //        userStori
-                //        //u.Title = userStory.Title;
-                //        //u.Description = userStory.Description;
-                //        //u.BusinessValue = userStory.BusinessValue;
-                //        //u.CreationDate = userStory.CreationDate;
-                //        //u.Priority = userStory.Priority;
-                //        //u.StoryPoints = userStory.StoryPoints;
-                //    }
-                //}
-
-
+                JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
         }
         public void AddUserStory(UserStory aUserStory)
         {
             userStories.Add(aUserStory);
+            JsonFileUserStoryService.SaveJsonUserStories(userStories);
 
         }
     }

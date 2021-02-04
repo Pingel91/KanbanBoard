@@ -16,6 +16,12 @@ namespace UserStoryBoard.Pages
         private UserStoryService userStoryService;
 
         public List<UserStory> UserStories { get; private set; }
+        public List<Board> KanbanBoards = new List<Board>()
+        {
+            new Board("Kanban Board 1"),
+            new Board("Caspars Test Board"),
+            new Board("Board")
+        };
 
         public KanbanBoardModel(UserStoryService userStoryService)
         {

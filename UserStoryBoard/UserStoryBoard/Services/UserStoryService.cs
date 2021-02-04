@@ -52,7 +52,7 @@ namespace UserStoryBoard.Services
 
 
 
-        public UserStory UpdateUserStory(UserStory userStory)
+        public void UpdateUserStory(UserStory userStory)
         {
             if (userStory != null)
             {
@@ -61,7 +61,7 @@ namespace UserStoryBoard.Services
                 {
                     if (userStories[i].Id == userStory.Id)
                     {
-                        return userStory;
+                        userStories[i] = userStory;
                         break;
                     }
                 }
@@ -81,10 +81,7 @@ namespace UserStoryBoard.Services
 
 
             }
-
-            return null;
         }
-
         public void AddUserStory(UserStory aUserStory)
         {
             userStories.Add(aUserStory);

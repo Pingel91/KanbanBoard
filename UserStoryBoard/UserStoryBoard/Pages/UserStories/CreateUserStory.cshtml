@@ -1,0 +1,41 @@
+﻿@page
+@model UserStoryBoard.Pages.UserStories.CreateUserStoryModel
+@{
+    ViewData["Title"] = "CreateUserStory";
+}
+<h1>Create UserStory</h1>
+
+<form method="post">
+    
+    <div class="form-group">
+        <label asp-for="@Model.UserStory.Title" class="control-label"> Title </label>
+        <input asp-for="@Model.UserStory.Title" class="form-control" />
+        <span asp-validation-for="@Model.UserStory.Title"  class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.UserStory.Description" class="control-label">Description </label>
+        <input asp-for="@Model.UserStory.Description" class="form-control" />
+        <span asp-validation-for="@Model.UserStory.Description"  class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.UserStory.BusinessValue" class="control-label">BusinessValue</label>
+        <input asp-for="@Model.UserStory.BusinessValue" class="form-control" />
+        <span asp-validation-for="@Model.UserStory.BusinessValue"   class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.UserStory.Priority" class="control-label">Priority</label>
+        <input asp-for="@Model.UserStory.Priority" class="form-control" />
+        <span asp-validation-for="@Model.UserStory.Priority" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.UserStory.StoryPoints" class="control-label"> StoryPoints </label>
+        <input asp-for="@Model.UserStory.StoryPoints" class="form-control" />
+        <span asp-validation-for="@Model.UserStory.StoryPoints"  class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+

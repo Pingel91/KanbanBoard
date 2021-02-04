@@ -49,5 +49,10 @@ namespace UserStoryBoard.Services
             }
             return userStoryToBeDeleted;
         }
+
+        public void AddUserStory(UserStory aUserStory)
+        {
+            userStories.Add(aUserStory);
+        }
     }
 }

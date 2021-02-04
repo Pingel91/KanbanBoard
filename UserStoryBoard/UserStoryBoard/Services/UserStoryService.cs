@@ -9,6 +9,8 @@ namespace UserStoryBoard.Services
 {
     public class UserStoryService
     {
+        public enum ColumnType { Todo, Doing, Done }
+
         private List<UserStory> userStories;
 
         public UserStoryService()
@@ -18,7 +20,7 @@ namespace UserStoryBoard.Services
 
         public List<UserStory> GetUserStories()
         {
-            return userStories;
+            return userStories; 
         }
 
         public UserStory GetUserStory(int id)

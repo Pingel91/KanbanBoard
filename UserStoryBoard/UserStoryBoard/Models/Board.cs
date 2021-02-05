@@ -10,6 +10,8 @@ namespace UserStoryBoard.Models
     {
         public int Id { get; set; }
         public string BoardName { get; set; }
+        public string Description { get; set; }
+        public DateTime CreationDate { get; set; }
         public int Columns { get; set; }
         public List<string> ColumnNames { get; set; }
         public List<UserStory> userStoriesOnBoard { get; set; }

@@ -49,12 +49,25 @@ namespace UserStoryBoard.Services
             }
         }
 
+<<<<<<< HEAD
         public void DeleteBoard(Board aBoard)
         {
             if (aBoard != null)
             {
                 kanbanBoards.Remove(aBoard);
             }
+=======
+<<<<<<< HEAD
+        public void AddBoard(Board aBoard)
+        {
+            kanbanBoards.Add(aBoard);
+            // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+=======
+        public void DeleteBoard(Board board)
+        {
+            
+>>>>>>> 7a772f1c05ac0459b42cc345e247424cce11c148
+>>>>>>> 01410dcee543530ac1e9ca5acc97d2f85514fd73
         }
     }
 }

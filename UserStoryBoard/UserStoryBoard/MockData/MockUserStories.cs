@@ -14,7 +14,8 @@ namespace UserStoryBoard.MockData
             new UserStory("Create Story", "As P.O I want to create a new story So...", 1,  4, "Small"),
             new UserStory("Edit Story", "As P.O I want to edit a Story So...", 2,  2, "Medium"),
             new UserStory("Move Story", "As a team member I want to move a Story So...", 1, 3, "Large"),
-            new UserStory("Delete Story", "As a team member I want to delete a Story So...", 3,  1, "Large")
+            new UserStory("Delete Story", "As a team member I want to delete a Story So...", 3,  1, "Large"),
+            new UserStory("Column 2 Story", "As A programmer I want to move stories so...", 3,  1, "Large", 2)
         };
 
         public static List<UserStory> GetMockUserStories()

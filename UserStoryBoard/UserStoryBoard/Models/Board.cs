@@ -16,7 +16,7 @@ namespace UserStoryBoard.Models
         public List<string> ColumnNames { get; set; }
         public List<UserStory> userStoriesOnBoard { get; set; }
 
-        private static int nextId = 1;
+        private static int nextId = 0;
 
         public Board()
         {

@@ -36,7 +36,6 @@ namespace UserStoryBoard.Services
         {
             if (board != null)
             {
-
                 for (int i = 0; i < kanbanBoards.Count; i++)
                 {
                     if (kanbanBoards[i].Id == board.Id)
@@ -45,12 +44,9 @@ namespace UserStoryBoard.Services
                     }
                 }
 
-
-
+                //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
             }
         }
-
-
 
         public void DeleteBoard(Board aBoard)
         {
@@ -59,7 +55,6 @@ namespace UserStoryBoard.Services
                 kanbanBoards.Remove(aBoard);
             }
         }
-
         public void AddBoard(Board aBoard)
         {
             kanbanBoards.Add(aBoard);

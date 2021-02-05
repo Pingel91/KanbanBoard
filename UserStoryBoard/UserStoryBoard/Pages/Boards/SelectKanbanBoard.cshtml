@@ -8,11 +8,11 @@
     @for (int i = 0; i < Model.KanbanBoards.Count; i++)
     {
     <div class="card-header">
-        <a class="list-group-item list-group-item-action text-light" asp-page="KanbanBoard" asp-route-id="@i">@Model.KanbanBoards[i].BoardName</a>
-        <a class="btn" type="button" asp-page="DeleteKanbanBoard" asp-route-id="@i">
+        <a class="list-group-item list-group-item-action text-light" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">@Model.KanbanBoards[i].BoardName</a>
+        <a class="btn" type="button" asp-page="DeleteKanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
             <i class="fa fa-trash"></i>
         </a>
-        <a class="btn" type="button" asp-page="EditKanbanBoard" asp-route-id="@i">
+        <a class="btn" type="button" asp-page="EditKanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
             <i class="fa fa-edit"></i>
         </a>
     </div>

@@ -36,7 +36,7 @@ namespace UserStoryBoard.Pages.Boards
             }
             boardService.UpdateBoard(KanbanBoard);
 
-            return RedirectToPage("UserStories");
+            return RedirectToPage("SelectKanbanBoard");
         }
     }
 }

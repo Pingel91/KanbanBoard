@@ -21,11 +21,16 @@ namespace UserStoryBoard.Models
         public Board()
         {
             Id = nextId++;
+
+            CreationDate = DateTime.Now;
         }
 
         public Board(string name)
         {
+            Id = nextId++;
             BoardName = name;
+
+            CreationDate = DateTime.Now;
         }
 
         public Board(string name, List<string> colNames, int cols, string descr)

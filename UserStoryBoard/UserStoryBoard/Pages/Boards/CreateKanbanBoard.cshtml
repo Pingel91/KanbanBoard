@@ -1,0 +1,18 @@
+﻿@page
+@model UserStoryBoard.Pages.Boards.CreateKanbanBoardModel
+@{
+    ViewData["Title"] = "CreateKanbanBoard";
+}
+<h1>Create Kanban Board</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.KanbanBoard.Title" class="control-label"> Title </label>
+        <input asp-for="@Model.KanbanBoard.Title" class="form-control"/>
+        <span asp-validation-for="@Model.KanbanBoard.Title" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary"/>
+    </div>
+</form>

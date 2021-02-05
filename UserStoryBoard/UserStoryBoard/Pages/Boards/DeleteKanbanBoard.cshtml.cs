@@ -22,15 +22,15 @@ namespace UserStoryBoard.Pages.Boards
             this.boardService = boardService;
         }
 
-        public IActionResult OnGet(string name)
+        public IActionResult OnGet(int id)
         {
-            Board = boardService.GetKanbanBoard(name);
+            Board = boardService.GetBoard(id);
             return Page();
         }
 
         public IActionResult OnPost()
         {
-            boardService.DeleteKanbanBoard(Board);
+            boardService.DeleteBoard(Board);
             return RedirectToPage("KanbanBoard");
         }
     }

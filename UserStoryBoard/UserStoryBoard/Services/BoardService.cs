@@ -47,5 +47,10 @@ namespace UserStoryBoard.Services
                 //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
             }
         }
+
+        public void DeleteBoard(Board board)
+        {
+            
+        }
     }
 }

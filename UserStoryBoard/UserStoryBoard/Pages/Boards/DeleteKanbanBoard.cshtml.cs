@@ -31,7 +31,7 @@ namespace UserStoryBoard.Pages.Boards
         public IActionResult OnPost()
         {
             boardService.DeleteBoard(Board);
-            return RedirectToPage("KanbanBoard");
+            return RedirectToPage("SelectKanbanBoard");
         }
     }
 }

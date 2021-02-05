@@ -13,6 +13,7 @@ namespace UserStoryBoard.Pages.Boards
     {
         [BindProperty]
         public Board KanbanBoard { get; set; }
+<<<<<<< HEAD
 
         private BoardService boardService;
 
@@ -20,6 +21,8 @@ namespace UserStoryBoard.Pages.Boards
         {
             this.boardService = boardService;
         }
+=======
+>>>>>>> 7a772f1c05ac0459b42cc345e247424cce11c148
 
         public IActionResult OnGet()
         {

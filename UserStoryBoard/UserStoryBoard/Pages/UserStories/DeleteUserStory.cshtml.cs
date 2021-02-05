@@ -13,7 +13,7 @@ namespace UserStoryBoard.Pages
     {
         
         [BindProperty]
-        public Models.UserStory UserStory { get; set; }
+        public UserStory UserStory { get; set; }
         
 
         private UserStoryService userStoryService;

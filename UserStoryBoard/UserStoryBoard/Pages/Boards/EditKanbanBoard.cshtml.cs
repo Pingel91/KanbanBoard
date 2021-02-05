@@ -9,29 +9,34 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages.Boards
 {
-    public class DeleteKanbanBoardModel : PageModel
+    public class EditKanbanBoardModel : PageModel
     {
-        [BindProperty]
-        public Board Board { get; set; }
-
-
         private BoardService boardService;
 
-        public DeleteKanbanBoardModel(BoardService boardService)
+        [BindProperty]
+        public Board KanbanBoard { get; set; }
+
+        public EditKanbanBoardModel(BoardService bService)
         {
-            this.boardService = boardService;
+            this.boardService = bService;
         }
 
         public IActionResult OnGet(int id)
         {
-            Board = boardService.GetBoard(id);
+            KanbanBoard = boardService.GetBoard(id);
+
             return Page();
         }
 
         public IActionResult OnPost()
         {
-            boardService.DeleteBoard(Board);
-            return RedirectToPage("KanbanBoard");
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            boardService.UpdateBoard(KanbanBoard);
+
+            return RedirectToPage("UserStories");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace UserStoryBoard.Pages.Boards
     public class CreateKanbanBoardModel : PageModel
     {
         [BindProperty]
-        public KanbanBoard KanbanBoard { get; set; }
+        public Board KanbanBoard { get; set; }
 
         public IActionResult OnGet()
         {

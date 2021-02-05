@@ -36,7 +36,7 @@ namespace UserStoryBoard.Services
 
         public UserStory GetUserStoryByColumn(int column)
         {
-
+            return null;
         }
 
         public UserStory DeleteUserStory(int userStoryId)

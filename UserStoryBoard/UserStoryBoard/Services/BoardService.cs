@@ -55,6 +55,24 @@ namespace UserStoryBoard.Services
                 kanbanBoards.Remove(aBoard);
             }
         }
+
+        public void DeleteBoardId(int boardId)
+        {
+            Board boardtoBeDeleted = null;
+            foreach (Board board in kanbanBoards)
+            {
+                if (board.Id == boardId)
+                {
+                    boardtoBeDeleted = board;
+                    break;
+                }
+            }
+            if (boardtoBeDeleted != null)
+            {
+                kanbanBoards.Remove(boardtoBeDeleted);
+                
+            }
+        }
         public void AddBoard(Board aBoard)
         {
             kanbanBoards.Add(aBoard);

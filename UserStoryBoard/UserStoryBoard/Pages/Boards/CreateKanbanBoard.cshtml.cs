@@ -13,6 +13,10 @@ namespace UserStoryBoard.Pages.Boards
     {
         [BindProperty]
         public Board KanbanBoard { get; set; }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 11c3e406da5566690f1d0c9b22ca9d68fb381e18
 
         private BoardService boardService;
 

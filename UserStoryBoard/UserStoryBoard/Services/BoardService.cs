@@ -36,7 +36,6 @@ namespace UserStoryBoard.Services
         {
             if (board != null)
             {
-
                 for (int i = 0; i < kanbanBoards.Count; i++)
                 {
                     if (kanbanBoards[i].Id == board.Id)

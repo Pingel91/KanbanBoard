@@ -25,7 +25,7 @@ namespace UserStoryBoard.Models
             Id = nextId++;
         }
 
-        public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int column = 0)
+        public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int column = 1)
         {
             Id = nextId++;
             Title = title;

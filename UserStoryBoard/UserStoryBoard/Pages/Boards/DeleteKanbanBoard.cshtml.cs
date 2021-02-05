@@ -28,9 +28,9 @@ namespace UserStoryBoard.Pages.Boards
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id)
         {
-            boardService.DeleteBoard(Board);
+            boardService.DeleteBoardId(id);
             return RedirectToPage("SelectKanbanBoard");
         }
     }

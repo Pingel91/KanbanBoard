@@ -34,7 +34,7 @@ namespace UserStoryBoard.Pages.Boards
             }
             boardService.AddBoard(KanbanBoard);
 
-            return RedirectToPage("KanbanBoard");
+            return RedirectToPage("SelectKanbanBoard");
         }
     }
 }

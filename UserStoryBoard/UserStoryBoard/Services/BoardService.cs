@@ -16,30 +16,36 @@ namespace UserStoryBoard.Services
             kanbanBoards = MockKanbanBoards.GetMockBoards();
         }
 
-        public List<Board> GetBoards()
+        public List<Board> GetAllBoards()
         {
             return kanbanBoards;
         }
 
-        public void DeleteKanbanBoard(Board aBoard)
+        public Board GetBoard (int id)
         {
-            if (aBoard != null)
+            foreach (Board b in kanbanBoards)
             {
-                kanbanBoards.Remove(aBoard);
+                if (b.Id == id)
+                    return b;
             }
+
+            return null;
         }
 
-        public Board GetKanbanBoard(string name)
+        public void UpdateBoard(Board board)
         {
-            foreach (Board board in kanbanBoards)
+            if (board != null)
             {
-                if (board.BoardName == name)
-                {
-                    return board;
-                }
-            }
 
-            return new Board();
+                for (int i = 0; i < kanbanBoards.Count; i++)
+                {
+                    if (kanbanBoards[i].Id == board.Id)
+                    {
+                        kanbanBoards[i] = board;
+                    }
+                }
+                //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+            }
         }
     }
 }

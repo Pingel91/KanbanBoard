@@ -1,4 +1,4 @@
-﻿@page "{name}"
+﻿@page "{id:int}"
 @model UserStoryBoard.Pages.Boards.DeleteKanbanBoardModel
 @{
     ViewData["Title"] = "DeleteKanbanBoard";
@@ -10,7 +10,7 @@
     <form method="post">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Board.BoardName)
+                @Model.Board.BoardName
             </dt>
         </dl>
         <input type="submit" value="Delete" class="btn btn-danger" />

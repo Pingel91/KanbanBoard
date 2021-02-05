@@ -28,12 +28,15 @@ namespace UserStoryBoard.Models
             BoardName = name;
         }
 
-        public Board(string name, List<string> colNames, int cols)
+        public Board(string name, List<string> colNames, int cols, string descr)
         {
             Id = nextId++;
             BoardName = name;
             Columns = cols;
             ColumnNames = colNames;
+            Description = descr;
+
+            CreationDate = DateTime.Now;
         }
     }
 }

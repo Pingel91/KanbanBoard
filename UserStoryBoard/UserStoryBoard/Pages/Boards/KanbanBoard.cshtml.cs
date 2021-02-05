@@ -13,22 +13,20 @@ namespace UserStoryBoard.Pages
     {
         public int currentId = 0;
 
+        private BoardService boardService;
         private UserStoryService userStoryService;
 
         public List<UserStory> UserStories { get; private set; }
-        public List<Board> KanbanBoards = new List<Board>()
-        {
-            new Board("Kanban Board 1", new List<string>() {"To Do", "Doing", "Done"}, 3),
-            new Board("Caspars Test Board", new List<string>() {"To Do", "Doing", "Done"}, 3),
-            new Board("Board", new List<string>() {"To Do", "Doing", "Done"}, 3)
-        };
+        public List<Board> KanbanBoards;
 
-        public KanbanBoardModel(UserStoryService userStoryService)
+        public KanbanBoardModel(UserStoryService uSService, BoardService bService)
         {
-            this.userStoryService = userStoryService;
+            boardService = bService;
+            userStoryService = uSService;
         }
         public void OnGet(int id)
         {
+            KanbanBoards = boardService.GetAllBoards();
             UserStories = userStoryService.GetUserStories(); // SELECTS THE SAME USER STORIES FOR ALL BOARDS - NEEDS TO GO THROUGH THE NEW BoardService
             currentId = id;
         }

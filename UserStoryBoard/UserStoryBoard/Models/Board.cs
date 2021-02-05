@@ -16,6 +16,11 @@ namespace UserStoryBoard.Models
         public Board()
         { }
 
+        public Board(string name)
+        {
+            BoardName = name;
+        }
+
         public Board(string name, List<string> colNames, int cols)
         {
             BoardName = name;

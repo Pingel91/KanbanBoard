@@ -9,14 +9,14 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages.Boards
 {
-    public class CreateBoardModel : PageModel
+    public class CreateKanbanBoardModel : PageModel
     {
         [BindProperty]
         public Board KanbanBoard { get; set; }
 
         private BoardService boardService;
 
-        public CreateBoardModel(BoardService boardService)
+        public CreateKanbanBoardModel(BoardService boardService)
         {
             this.boardService = boardService;
         }

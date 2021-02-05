@@ -21,7 +21,7 @@ namespace UserStoryBoard.Services
             return kanbanBoards;
         }
 
-        public Board GetBoard (int id)
+        public Board GetBoard(int id)
         {
             foreach (Board b in kanbanBoards)
             {
@@ -44,7 +44,16 @@ namespace UserStoryBoard.Services
                         kanbanBoards[i] = board;
                     }
                 }
+
                 //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+            }
+        }
+
+        public void DeleteBoard(Board aBoard)
+        {
+            if (aBoard != null)
+            {
+                kanbanBoards.Remove(aBoard);
             }
         }
     }

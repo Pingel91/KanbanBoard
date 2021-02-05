@@ -14,7 +14,7 @@ namespace UserStoryBoard.Pages.Boards
         private BoardService boardService;
 
         [BindProperty]
-        public UserStory UserStory { get; set; }
+        public Board KanbanBoard { get; set; }
 
         public EditKanbanBoardModel(BoardService bService)
         {

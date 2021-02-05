@@ -23,6 +23,11 @@ namespace UserStoryBoard.Models
             Id = nextId++;
         }
 
+        public Board(string name)
+        {
+            BoardName = name;
+        }
+
         public Board(string name, List<string> colNames, int cols)
         {
             Id = nextId++;

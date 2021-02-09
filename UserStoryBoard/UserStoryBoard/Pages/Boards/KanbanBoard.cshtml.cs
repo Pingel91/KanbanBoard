@@ -1,34 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UserStoryBoard.Services;
+using System.Collections.Generic;
 using UserStoryBoard.Models;
+using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages
 {
     public class KanbanBoardModel : PageModel
     {
-        public int currentId = 0;
-
         private BoardService boardService;
-        private UserStoryService userStoryService;
+        public Board CurrentBoard { get; set; }
 
         public List<UserStory> UserStories { get; private set; }
         public List<Board> KanbanBoards;
 
-        public KanbanBoardModel(UserStoryService uSService, BoardService bService)
+
+        public KanbanBoardModel(BoardService bService)
         {
             boardService = bService;
-            userStoryService = uSService;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            GetData(id);
+
+            return Page();
+        }
+
+        public IActionResult OnGetColumn(int boardId, int userStoryId, int column)
+        {
+            GetData(boardId);
+
+            UserStory updated = boardService.GetUserStory(userStoryId, boardId);
+
+            int result = updated.ColumnId + column;
+            if (result > -1 && result < CurrentBoard.Columns)
+            {
+                updated.ColumnId = result; // FUCK THIS
+                boardService.UpdateUserStory(updated, boardService.GetBoard(boardId).Id);
+            }
+
+            return Page();
+        }
+
+        private void GetData(int id)
+        {
+            CurrentBoard = boardService.GetBoard(id);
             KanbanBoards = boardService.GetAllBoards();
-            UserStories = userStoryService.GetUserStories(); // SELECTS THE SAME USER STORIES FOR ALL BOARDS - NEEDS TO GO THROUGH THE NEW BoardService
-            currentId = id;
+            UserStories = boardService.GetUserStories(id);
         }
     }
 }

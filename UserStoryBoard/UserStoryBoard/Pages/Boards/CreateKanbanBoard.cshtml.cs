@@ -16,9 +16,9 @@ namespace UserStoryBoard.Pages.Boards
 
         private BoardService boardService;
 
-        public CreateKanbanBoardModel(BoardService boardService)
+        public CreateKanbanBoardModel(BoardService bService)
         {
-            this.boardService = boardService;
+            boardService = bService;
         }
 
         public IActionResult OnGet()

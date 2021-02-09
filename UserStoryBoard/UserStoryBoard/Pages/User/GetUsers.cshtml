@@ -1,0 +1,46 @@
+﻿@page
+@model UserStoryBoard.Pages.User.GetUsersModel
+@{
+    ViewData["Title"] = "GetUsers";
+}
+<h1>GetUsers</h1>
+
+
+<p>
+    <a asp-page="CreateUser">Create New User</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                <img src="~/Images/@item.ImageName" width="60" height="70">
+            </td>
+            <td>
+                <p>
+                    <a asp-page="EditPizza" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="DeletePizza" asp-route-id="@item.Id">Delete</a>
+                </p>
+            </td>
+        </tr>
+    }
+    </tbody>
+    
+</table>
+
+
+

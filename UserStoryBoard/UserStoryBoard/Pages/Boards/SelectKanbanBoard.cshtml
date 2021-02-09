@@ -17,10 +17,10 @@
         <a class="list-group-item list-group-item-action text-light" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
             @Model.KanbanBoards[i].Id) <strong>@Model.KanbanBoards[i].BoardName</strong> - @Model.KanbanBoards[i].Description <span style="float:right"> Created: @Model.KanbanBoards[i].CreationDate.Day/@Model.KanbanBoards[i].CreationDate.Month/@Model.KanbanBoards[i].CreationDate.Year </span>
         </a>
-        <a class="btn" type="button" asp-page="DeleteKanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
+        <a class="btn" type="button" asp-page="DeleteKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
             <i class="fa fa-trash"></i>
         </a>
-        <a class="btn" type="button" asp-page="EditKanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
+        <a class="btn" type="button" asp-page="EditKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
             <i class="fa fa-edit"></i>
         </a>
     </div>

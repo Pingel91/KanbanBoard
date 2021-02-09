@@ -16,6 +16,7 @@ namespace UserStoryBoard.Models
         public int Priority { get; set; }
         public string StoryPoints { get; set; }
 
+        public int BoardId { get; set; }
         public int ColumnId { get; set; }
 
         private static int nextId = 0;
@@ -25,7 +26,7 @@ namespace UserStoryBoard.Models
             Id = nextId++;
         }
 
-        public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int column = 1)
+        public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 1)
         {
             Id = nextId++;
             Title = title;
@@ -34,6 +35,9 @@ namespace UserStoryBoard.Models
             CreationDate = DateAndTime.Now;
             Priority = priority;
             StoryPoints = storyPoints;
+            BoardId = boardId;
+
+            // Optional to set on creation
             ColumnId = column;
         } 
     }

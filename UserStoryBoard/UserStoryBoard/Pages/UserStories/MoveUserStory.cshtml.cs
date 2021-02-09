@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,32 +10,36 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages.UserStories
 {
-    public class EditUserStoryModel : PageModel
+    public class MoveUserStoryModel : PageModel
     {
         private BoardService boardService;
 
         [BindProperty]
         public UserStory UserStory { get; set; }
-         
 
-        public EditUserStoryModel(BoardService bService)
+        public MoveUserStoryModel(BoardService bService)
         {
             boardService = bService;
         }
 
-        public IActionResult OnGet(int id, int boardId)
+        public IActionResult OnPost()
         {
-            UserStory = boardService.GetUserStory(id, boardId);
+
 
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnGet(int id, int boardId)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            UserStory = boardService.GetUserStory(id, boardId);
+
+            UserStory.ColumnId = 2;
+
             boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
             string page = "../Boards/KanbanBoard/" + UserStory.BoardId;

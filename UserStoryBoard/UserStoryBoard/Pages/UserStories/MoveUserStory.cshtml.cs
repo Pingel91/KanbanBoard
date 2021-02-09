@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,19 @@ namespace UserStoryBoard.Pages.UserStories
             boardService = bService;
         }
 
-        public IActionResult OnPost(int id, int boardId)
+        public IActionResult OnPost()
         {
-            Console.WriteLine("Post");
+            
+
+            return Page();
+        }
+
+        public IActionResult OnGet(int id, int boardId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
             UserStory = boardService.GetUserStory(id, boardId);
 
@@ -31,12 +42,8 @@ namespace UserStoryBoard.Pages.UserStories
 
             boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
-            return RedirectToPage("UserStories");
-        }
-
-        public void OnGet()
-        {
-            Console.WriteLine("Get");
+            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
+            return RedirectToPage(page);
         }
     }
 }

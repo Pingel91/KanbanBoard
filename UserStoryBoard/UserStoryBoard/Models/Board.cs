@@ -16,24 +16,32 @@ namespace UserStoryBoard.Models
         public List<string> ColumnNames { get; set; }
         public List<UserStory> userStoriesOnBoard { get; set; }
 
-        private static int nextId = 1;
+        private static int nextId = 0;
 
         public Board()
         {
             Id = nextId++;
+
+            CreationDate = DateTime.Now;
         }
 
         public Board(string name)
         {
+            Id = nextId++;
             BoardName = name;
+
+            CreationDate = DateTime.Now;
         }
 
-        public Board(string name, List<string> colNames, int cols)
+        public Board(string name, List<string> colNames, int cols, string descr)
         {
             Id = nextId++;
             BoardName = name;
             Columns = cols;
             ColumnNames = colNames;
+            Description = descr;
+
+            CreationDate = DateTime.Now;
         }
     }
 }

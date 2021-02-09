@@ -4,11 +4,19 @@
 @{
 }
 
+<div class="mb-2">
+    <a class="btn" type="button" asp-page="CreateKanbanBoard">
+        <i class="fa fa-plus"></i>
+    </a>
+</div>
+
 <div class="list-group">
     @for (int i = 0; i < Model.KanbanBoards.Count; i++)
     {
     <div class="card-header">
-        <a class="list-group-item list-group-item-action text-light" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">@Model.KanbanBoards[i].BoardName</a>
+        <a class="list-group-item list-group-item-action text-light" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
+            @Model.KanbanBoards[i].Id) <strong>@Model.KanbanBoards[i].BoardName</strong> - @Model.KanbanBoards[i].Description <span style="float:right"> Created: @Model.KanbanBoards[i].CreationDate.Day/@Model.KanbanBoards[i].CreationDate.Month/@Model.KanbanBoards[i].CreationDate.Year </span>
+        </a>
         <a class="btn" type="button" asp-page="DeleteKanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
             <i class="fa fa-trash"></i>
         </a>

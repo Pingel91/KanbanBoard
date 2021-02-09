@@ -19,10 +19,10 @@
                 <label asp-for="@Model.KanbanBoard.Description" class="control-lable"></label>
                 <input asp-for="@Model.KanbanBoard.Description" class="form-control" />
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="@Model.KanbanBoard.CreationDate" class="control-lable"></label>
                 <input asp-for="@Model.KanbanBoard.CreationDate" class="form-control" />
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <input type="submit" value="Update" class="btn btn-primary" />
@@ -31,5 +31,5 @@
     </div>
 </div>
 <div>
-    <a asp-page="/SelectKanbanBoard">Back to Kanban Boards Page</a>
+    <a asp-page="SelectKanbanBoard">Back to Kanban Boards Page</a>
 </div>

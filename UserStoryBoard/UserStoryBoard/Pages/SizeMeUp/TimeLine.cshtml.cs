@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace UserStoryBoard.Pages.Boards
+namespace UserStoryBoard.Pages
 {
-    public class MoveKanbanBoardModel : PageModel
+    public class TimeLineModel : PageModel
     {
         public void OnGet()
         {

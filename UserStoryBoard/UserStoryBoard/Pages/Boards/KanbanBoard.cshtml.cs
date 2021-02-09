@@ -24,5 +24,10 @@ namespace UserStoryBoard.Pages
             UserStories = boardService.GetUserStories(id);
             currentId = id;
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }

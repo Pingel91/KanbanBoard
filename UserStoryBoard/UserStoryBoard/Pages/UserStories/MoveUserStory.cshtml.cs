@@ -11,25 +11,25 @@ namespace UserStoryBoard.Pages.UserStories
 {
     public class MoveUserStoryModel : PageModel
     {
-        private UserStoryService userStoryService;
+        private BoardService boardService;
 
         [BindProperty]
         public UserStory UserStory { get; set; }
 
-        public MoveUserStoryModel(UserStoryService userStoryService)
+        public MoveUserStoryModel(BoardService bService)
         {
-            this.userStoryService = userStoryService;
+            boardService = bService;
         }
 
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(int id, int boardId)
         {
             Console.WriteLine("Post");
 
-            UserStory = userStoryService.GetUserStory(id);
+            UserStory = boardService.GetUserStory(id, boardId);
 
             UserStory.ColumnId = 2;
 
-            userStoryService.UpdateUserStory(UserStory);
+            boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
             return RedirectToPage("UserStories");
         }

@@ -15,18 +15,18 @@ namespace UserStoryBoard.Pages
         public UserStory UserStory { get; set; }
 
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private BoardService boardService;
 
         
 
-        public UserStoryDetailModel(UserStoryService userStoryService)
+        public UserStoryDetailModel(BoardService bService)
         {
-            this.userStoryService = userStoryService;
+            boardService = bService;
         }
-        public void OnGet(int id)
+        public void OnGet(int id, int boardId)
         {
-            UserStories = userStoryService.GetUserStories();
-            UserStory = userStoryService.GetUserStory(id);
+            UserStories = boardService.GetUserStories(boardId);
+            UserStory = boardService.GetUserStory(id, boardId);
         }
     }
 }

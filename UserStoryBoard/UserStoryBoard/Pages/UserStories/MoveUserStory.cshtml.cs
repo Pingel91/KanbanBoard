@@ -9,36 +9,35 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages.UserStories
 {
-    public class EditUserStoryModel : PageModel
+    public class MoveUserStoryModel : PageModel
     {
         private BoardService boardService;
 
         [BindProperty]
         public UserStory UserStory { get; set; }
-         
 
-        public EditUserStoryModel(BoardService bService)
+        public MoveUserStoryModel(BoardService bService)
         {
             boardService = bService;
         }
 
-        public IActionResult OnGet(int id, int boardId)
+        public IActionResult OnPost(int id, int boardId)
         {
+            Console.WriteLine("Post");
+
             UserStory = boardService.GetUserStory(id, boardId);
 
-            return Page();
-        }
+            UserStory.ColumnId = 2;
 
-        public IActionResult OnPost()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
             boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
             string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
             return RedirectToPage(page);
+        }
+
+        public void OnGet()
+        {
+            Console.WriteLine("Get");
         }
     }
 }

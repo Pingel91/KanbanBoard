@@ -21,9 +21,9 @@ namespace UserStoryBoard.Pages.Boards
             this.boardService = bService;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int boardId)
         {
-            KanbanBoard = boardService.GetBoard(id);
+            KanbanBoard = boardService.GetBoard(boardId);
 
             return Page();
         }

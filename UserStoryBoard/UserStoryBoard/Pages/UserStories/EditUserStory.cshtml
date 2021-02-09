@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{id:int}/{boardId:int}"
 @model UserStoryBoard.Pages.UserStories.EditUserStoryModel
 @{
 }
@@ -43,5 +43,5 @@
     </div>
 </div>
 <div>
-    <a asp-page="/UserStories">Back to UserStory Page</a>
+    <a asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">Back to UserStory Page</a>
 </div>

@@ -10,19 +10,19 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages
 {
-    public class UserStoriesModel : PageModel
-    {
-        private UserStoryService userStoryService;
+    //public class UserStoriesModel : PageModel
+    //{
+    //    private BoardService boardService;
 
-        public List<UserStory> UserStories { get; private set; }
+    //    public List<UserStory> UserStories { get; private set; }
 
-        public UserStoriesModel(UserStoryService userStoryService)
-        {
-            this.userStoryService = userStoryService;
-        }
-        public void OnGet()
-        {
-            UserStories = userStoryService.GetUserStories();
-        }
-    }
+    //    public UserStoriesModel(BoardService bService)
+    //    {
+    //        boardService = bService;
+    //    }
+    //    public void OnGet(int boardId)
+    //    {
+    //        UserStories = boardService.GetUserStories(boardId);
+    //    }
+    //}
 }

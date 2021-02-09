@@ -9,18 +9,35 @@ namespace UserStoryBoard.Services
 {
     public class BoardService
     {
+        // PROPERTIES --------------------------------------------------------------------
         private List<Board> kanbanBoards;
+        //private List<UserStory> userStories;
 
+        // CONSTRUCTOR -------------------------------------------------------------------
         public BoardService()
         {
             kanbanBoards = MockKanbanBoards.GetMockBoards();
+            //userStories = MockUserStories.GetMockUserStories();
+
+            // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA
+            foreach (UserStory uS in MockUserStories.GetMockUserStories())
+            {
+                kanbanBoards[uS.BoardId].userStoriesOnBoard.Add(uS);
+            }
         }
 
+        // GET LISTS ---------------------------------------------------------------------
         public List<Board> GetAllBoards()
         {
             return kanbanBoards;
         }
 
+        public List<UserStory> GetUserStories(int boardId)
+        {
+            return kanbanBoards[boardId].userStoriesOnBoard;
+        }
+
+        // GET SPECIFIC OBJECT -----------------------------------------------------------
         public Board GetBoard(int id)
         {
             foreach (Board b in kanbanBoards)
@@ -32,6 +49,31 @@ namespace UserStoryBoard.Services
             return null;
         }
 
+        public UserStory GetUserStory(int id, int boardId)
+        {
+            foreach (UserStory userStory in kanbanBoards[boardId].userStoriesOnBoard)
+            {
+                if (userStory.Id == id)
+                    return userStory;
+            }
+
+            return null;
+        }
+
+        // ADD ---------------------------------------------------------------------------
+        public void AddBoard(Board aBoard)
+        {
+            kanbanBoards.Add(aBoard);
+            // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+        }
+
+        public void AddUserStory(UserStory aUserStory, int boardId)
+        {
+            kanbanBoards[boardId].userStoriesOnBoard.Add(aUserStory);
+            //JsonFileUserStoryService.SaveJsonUserStories(userStories);
+        }
+
+        // UPDATE ------------------------------------------------------------------------
         public void UpdateBoard(Board board)
         {
             if (board != null)
@@ -48,6 +90,33 @@ namespace UserStoryBoard.Services
             }
         }
 
+<<<<<<< HEAD
+=======
+        public void UpdateUserStory(UserStory userStory, int boardId)
+        {
+            if (userStory != null)
+            {
+
+                for (int i = 0; i < kanbanBoards[boardId].userStoriesOnBoard.Count; i++)
+                {
+                    if (kanbanBoards[boardId].userStoriesOnBoard[i].Id == userStory.Id)
+                    {
+                        kanbanBoards[boardId].userStoriesOnBoard[i] = userStory;
+                    }
+                }
+                //JsonFileUserStoryService.SaveJsonUserStories(userStories);
+            }
+        }
+
+        // DELETE ------------------------------------------------------------------------
+        public void DeleteBoard(Board aBoard)
+        {
+            if (aBoard != null)
+            {
+                kanbanBoards.Remove(aBoard);
+            }
+        }
+>>>>>>> 5099e9c88222d2ce0bf90a612039c6803c79ccdc
 
         public void DeleteBoardId(int boardId)
         {
@@ -66,10 +135,24 @@ namespace UserStoryBoard.Services
                 
             }
         }
-        public void AddBoard(Board aBoard)
+
+        public UserStory DeleteUserStory(int userStoryId, int boardId)
         {
-            kanbanBoards.Add(aBoard);
-            // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+            UserStory userStoryToBeDeleted = null;
+            foreach (UserStory us in kanbanBoards[boardId].userStoriesOnBoard)
+            {
+                if (us.Id == userStoryId)
+                {
+                    userStoryToBeDeleted = us;
+                    break;
+                }
+            }
+            if (userStoryToBeDeleted != null)
+            {
+                kanbanBoards[boardId].userStoriesOnBoard.Remove(userStoryToBeDeleted);
+                //JsonFileUserStoryService.SaveJsonUserStories(userStories);
+            }
+            return userStoryToBeDeleted;
         }
     }
 }

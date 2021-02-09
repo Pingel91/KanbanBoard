@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int}/{boardId:int}"
 @model UserStoryBoard.Pages.UserStoryDetailModel
 @{
     <h1>User Stories</h1>
@@ -27,11 +27,11 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title"><small class="text-muted">@Model.UserStory.Id</small>@Model.UserStory.Title</h5>
-                        <a type="button" class="close" asp-page="UserStories">&times;</a>
+                        <a type="button" class="close" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">&times;</a>
                     </div>
 
                     <div class="modal-body">
-                        <p><b>Describtion:</b> @Model.UserStory.Description</p>
+                        <p><b>Description:</b> @Model.UserStory.Description</p>
                         <p><b>Business Value:</b> @Model.UserStory.BusinessValue</p>
                         <p><b>Creation Date:</b> @Model.UserStory.CreationDate</p>
                         <p><b>Priority:</b> @Model.UserStory.Priority</p>
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a type="button" class="btn btn-danger" asp-page="UserStories">Close</a>
+                        <a type="button" class="btn btn-danger" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">Close</a>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ namespace UserStoryBoard.Pages.UserStories
     public class CreateUserStoryModel : PageModel
     {
         [BindProperty] 
-        public UserStory UserStory { get; set; }
+        public UserStory UserStory { get; set; } = new UserStory();
 
         private BoardService boardService;
         //private UserStoryService userStoryService;
@@ -36,8 +36,8 @@ namespace UserStoryBoard.Pages.UserStories
             }
             boardService.AddUserStory(UserStory, UserStory.BoardId);
 
-            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
-            return RedirectToPage(page);
+            // string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
+            return Page();
         }
     }
 }

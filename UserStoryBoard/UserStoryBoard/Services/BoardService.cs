@@ -48,13 +48,6 @@ namespace UserStoryBoard.Services
             }
         }
 
-        public void DeleteBoard(Board aBoard)
-        {
-            if (aBoard != null)
-            {
-                kanbanBoards.Remove(aBoard);
-            }
-        }
 
         public void DeleteBoardId(int boardId)
         {

@@ -90,6 +90,7 @@ namespace UserStoryBoard.Services
             }
         }
 
+
         public void UpdateUserStory(UserStory userStory, int boardId)
         {
             if (userStory != null)
@@ -107,14 +108,6 @@ namespace UserStoryBoard.Services
         }
 
         // DELETE ------------------------------------------------------------------------
-        public void DeleteBoard(Board aBoard)
-        {
-            if (aBoard != null)
-            {
-                kanbanBoards.Remove(aBoard);
-            }
-        }
-
 
         public void DeleteBoardId(int boardId)
         {

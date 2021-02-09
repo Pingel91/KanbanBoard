@@ -11,20 +11,20 @@ namespace UserStoryBoard.Pages.UserStories
 {
     public class EditUserStoryModel : PageModel
     {
-        private UserStoryService userStoryService;
+        private BoardService boardService;
 
         [BindProperty]
         public UserStory UserStory { get; set; }
          
 
-        public EditUserStoryModel(UserStoryService userStoryService)
+        public EditUserStoryModel(BoardService bService)
         {
-            this.userStoryService = userStoryService;
+            boardService = bService;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, int boardId)
         {
-            UserStory = userStoryService.GetUserStory(id);
+            UserStory = boardService.GetUserStory(id, boardId);
 
             return Page();
         }
@@ -35,9 +35,10 @@ namespace UserStoryBoard.Pages.UserStories
             {
                 return Page();
             }
-            userStoryService.UpdateUserStory(UserStory);
+            boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
-            return RedirectToPage("UserStories");
+            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
+            return RedirectToPage(page);
         }
     }
 }

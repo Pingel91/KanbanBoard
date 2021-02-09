@@ -5,35 +5,43 @@
     <h1>@Model.KanbanBoards[Model.currentId].BoardName</h1>
     <div class="jumbotron">
         <div class="container">
+            <div class="mb-2">
+                <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="@Model.currentId">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
             <div class="row align-items-start">
                 @for (int i = 0; i < Model.KanbanBoards[Model.currentId].Columns; i++)
                 {
                     <div class="col-4">
-                    <h2>@Model.KanbanBoards[Model.currentId].ColumnNames[i]</h2>
-                    @foreach (UserStory userStory in Model.UserStories)
-                    {
-                        @if (userStory.ColumnId == i)
+                        <h2>@Model.KanbanBoards[Model.currentId].ColumnNames[i]</h2>
+                        @foreach (UserStory userStory in Model.UserStories)
                         {
-                            <div class="card mb-2" style="width: 95%">
-                                <div class="card-header p-2">
-                                    <h5 class="card-title">
-                                        <small class="text-muted">(@userStory.Id)</small> @userStory.Title
-                                    </h5>
+                            @if (userStory.ColumnId == i)
+                            {
+                                <div class="card mb-2" style="width: 95%">
+                                    <div class="card-header p-2">
+                                        <h5 class="card-title">
+                                            <small class="text-muted">(@userStory.Id)</small> @userStory.Title
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">@userStory.Description</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a class="btn" type="button" asp-page="../UserStories/DeleteUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <a class="btn" type="button" asp-page="../UserStories/UserStoryDetail" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        <a class="btn" type="button" asp-page="../UserStories/EditUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">@userStory.Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                    <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id">
-                                        <i class="fa fa-info-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            }
                         }
-                    }
                     </div>
                 }
             </div>

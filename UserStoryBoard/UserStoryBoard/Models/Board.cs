@@ -14,7 +14,7 @@ namespace UserStoryBoard.Models
         public DateTime CreationDate { get; set; }
         public int Columns { get; set; }
         public List<string> ColumnNames { get; set; }
-        public List<UserStory> userStoriesOnBoard { get; set; }
+        public List<UserStory> userStoriesOnBoard { get; set; } = new List<UserStory>();
 
         private static int nextId = 0;
 

@@ -16,21 +16,22 @@ namespace UserStoryBoard.Pages
         public UserStory UserStory { get; set; }
         
 
-        private UserStoryService userStoryService;
+        private BoardService boardService;
 
-        public DeleteUserStoryModel(UserStoryService userStoryService)
+        public DeleteUserStoryModel(BoardService bService)
         {
-            this.userStoryService = userStoryService;
+            boardService = bService;
         }
-        public void OnGet(int id)
+        public void OnGet(int id, int boardId)
         {
-            UserStory = userStoryService.GetUserStory(id);
+            UserStory = boardService.GetUserStory(id, boardId);
         }
 
         public IActionResult OnPost()
         {
-            UserStory deletedUserStory = userStoryService.DeleteUserStory(UserStory.Id);
-            return RedirectToPage("UserStories");
+            UserStory deletedUserStory = boardService.DeleteUserStory(UserStory.Id, UserStory.BoardId);
+            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
+            return RedirectToPage(page);
         }
     }
 }

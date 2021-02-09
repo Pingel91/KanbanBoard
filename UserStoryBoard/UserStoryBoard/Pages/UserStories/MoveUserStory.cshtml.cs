@@ -44,6 +44,14 @@ namespace UserStoryBoard.Pages.UserStories
 
             string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
             return RedirectToPage(page);
+<<<<<<< HEAD
+=======
+        }
+
+        public void OnGet()
+        {
+            Console.WriteLine("Get");
+>>>>>>> 58814dfe5652f570d8461a1202b85b580792590a
         }
     }
 }

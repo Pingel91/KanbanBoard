@@ -26,6 +26,7 @@ namespace UserStoryBoard
             services.AddSingleton<UserStoryService, UserStoryService>();
             services.AddTransient<JsonFileUserStoryService>();
             services.AddSingleton<BoardService, BoardService>();
+            services.AddSingleton<UserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

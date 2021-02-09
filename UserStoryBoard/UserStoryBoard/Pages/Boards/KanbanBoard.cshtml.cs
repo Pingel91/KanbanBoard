@@ -32,5 +32,10 @@ namespace UserStoryBoard.Pages
             UserStories = userStoryService.GetUserStories(); // SELECTS THE SAME USER STORIES FOR ALL BOARDS - NEEDS TO GO THROUGH THE NEW BoardService
             currentId = id;
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }

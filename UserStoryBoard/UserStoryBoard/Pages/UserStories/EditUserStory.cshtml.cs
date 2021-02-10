@@ -15,7 +15,6 @@ namespace UserStoryBoard.Pages.UserStories
 
         [BindProperty]
         public UserStory UserStory { get; set; }
-         
 
         public EditUserStoryModel(BoardService bService)
         {
@@ -29,7 +28,7 @@ namespace UserStoryBoard.Pages.UserStories
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id, int boardId)
         {
             if (!ModelState.IsValid)
             {
@@ -37,8 +36,7 @@ namespace UserStoryBoard.Pages.UserStories
             }
             boardService.UpdateUserStory(UserStory, UserStory.BoardId);
 
-            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
-            return RedirectToPage(page);
+            return Redirect("~/Boards/KanbanBoard/" + boardId);
         }
     }
 }

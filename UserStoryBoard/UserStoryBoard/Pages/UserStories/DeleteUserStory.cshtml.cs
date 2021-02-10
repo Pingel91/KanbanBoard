@@ -31,7 +31,6 @@ namespace UserStoryBoard.Pages
         public IActionResult OnPost(int id, int boardId)
         {
             boardService.DeleteUserStory(id, boardId);
-            string page = "../Boards/KanbanBoard/" + boardId;
             return Redirect("~/Boards/KanbanBoard/" + boardId);
         }
     }

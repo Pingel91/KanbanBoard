@@ -115,10 +115,10 @@ namespace UserStoryBoard.Services
                 {
                     if (board.Id == boardId)
                     {
-                        for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
+                        foreach (Board b in board.userStoriesOnBoard)
                         {
-                            if (board.userStoriesOnBoard[i].Id == userStory.Id)
-                                board.userStoriesOnBoard[i] = userStory;
+                            if (b.Id == userStory.Id)
+                                b = userStory;
                         }
                         break;
                     }

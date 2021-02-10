@@ -9,15 +9,20 @@ namespace UserStoryBoard.Services
 {
     public class UserService
     {
-        private List<User1> userStories;
+        private List<User1> users;
 
         public UserService()
         {
-            userStories = MockUser.GetMockUsers();
+            users = MockUser.GetMockUsers();
         }
         public List<User1> GetUsers()
         {
-            return userStories;
+            return users;
+        }
+        public void AddUser(User1 aUser)
+        {
+            users.Add(aUser);
+            // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
         }
     }
 }

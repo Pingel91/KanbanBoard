@@ -19,7 +19,7 @@ namespace UserStoryBoard.Services
             kanbanBoards = MockKanbanBoards.GetMockBoards();
             //userStories = MockUserStories.GetMockUserStories();
 
-            // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA
+            // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA 
             foreach (UserStory uS in MockUserStories.GetMockUserStories())
             {
                 kanbanBoards[uS.BoardId].userStoriesOnBoard.Add(uS);
@@ -46,13 +46,16 @@ namespace UserStoryBoard.Services
         // GET SPECIFIC OBJECT -----------------------------------------------------------
         public Board GetBoard(int id)
         {
+            Board theBoard = null;
             foreach (Board b in kanbanBoards)
             {
                 if (b.Id == id)
-                    return b;
+                {
+                    theBoard = b;
+                }
             }
 
-            return null;
+            return theBoard;
         }
 
         public UserStory GetUserStory(int id, int boardId)

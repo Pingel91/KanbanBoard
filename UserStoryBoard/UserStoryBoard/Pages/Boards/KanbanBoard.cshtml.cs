@@ -26,6 +26,7 @@ namespace UserStoryBoard.Pages
             return Page();
         }
 
+        // For refreshing the page when moving a card
         public IActionResult OnGetColumn(int boardId, int userStoryId, int column)
         {
             GetData(boardId);

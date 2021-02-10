@@ -30,13 +30,14 @@ namespace UserStoryBoard.Pages.UserStories
 
         public IActionResult OnPost()
         {
+            boardService.AddUserStory(UserStory, UserStory.BoardId);
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            boardService.AddUserStory(UserStory, UserStory.BoardId);
 
-            // string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
+            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
             return Page();
         }
     }

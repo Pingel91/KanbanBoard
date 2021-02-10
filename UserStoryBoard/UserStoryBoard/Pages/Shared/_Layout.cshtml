@@ -24,11 +24,11 @@
                             <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         @*<li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-page="/UserStories/UserStories">User Stories</a>
-        </li>*@
+                                <a class="nav-link text-light" asp-area="" asp-page="/UserStories/UserStories">User Stories</a>
+                            </li>*@
                         @*<li class="nav-item">
-        <a class="nav-link text-light" asp-area="" asp-page="KanbanBoard">Kanban Board</a>
-        </li>*@
+                            <a class="nav-link text-light" asp-area="" asp-page="KanbanBoard">Kanban Board</a>
+                            </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Boards/SelectKanbanBoard">Select Kanban Board</a>
                         </li>
@@ -62,6 +62,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxSupport.js"></script>
+    <script src="~/js/mousetrack.js"></script>
+    <script src="~/js/card.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

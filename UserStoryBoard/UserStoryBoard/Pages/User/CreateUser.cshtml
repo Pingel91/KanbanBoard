@@ -1,0 +1,23 @@
+﻿@page
+@model UserStoryBoard.Pages.User.CreateUserModel
+@{
+    ViewData["Title"] = "CreateUser";
+}
+<h1>Create User</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.User.Name" class="control-label"> Description </label>
+        <input asp-for="@Model.User.Name" class="form-control" />
+        <span asp-validation-for="@Model.User.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.User.ImageName" class="control-label"> Description </label>
+        <input asp-for="@Model.User.ImageName" class="form-control" />
+        <span asp-validation-for="@Model.User.ImageName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

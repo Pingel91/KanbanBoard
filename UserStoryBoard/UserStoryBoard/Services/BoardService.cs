@@ -34,27 +34,43 @@ namespace UserStoryBoard.Services
 
         public List<UserStory> GetUserStories(int boardId)
         {
-            return kanbanBoards[boardId].userStoriesOnBoard;
-        }
-
-        // GET SPECIFIC OBJECT -----------------------------------------------------------
-        public Board GetBoard(int id)
-        {
             foreach (Board b in kanbanBoards)
             {
-                if (b.Id == id)
-                    return b;
+                if (b.Id == boardId)
+                    return b.userStoriesOnBoard;
             }
 
             return null;
         }
 
+        // GET SPECIFIC OBJECT -----------------------------------------------------------
+        public Board GetBoard(int id)
+        {
+            Board theBoard = null;
+            foreach (Board b in kanbanBoards)
+            {
+                if (b.Id == id)
+                {
+                    theBoard = b;
+                }
+            }
+
+            return theBoard;
+        }
+
         public UserStory GetUserStory(int id, int boardId)
         {
-            foreach (UserStory userStory in kanbanBoards[boardId].userStoriesOnBoard)
+            foreach (Board board in kanbanBoards)
             {
-                if (userStory.Id == id)
-                    return userStory;
+                if (board.Id == boardId)
+                {
+                    for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
+                    {
+                        if (board.userStoriesOnBoard[i].Id == id)
+                            return board.userStoriesOnBoard[i];
+                    }
+                    break;
+                }
             }
 
             return null;
@@ -95,14 +111,19 @@ namespace UserStoryBoard.Services
         {
             if (userStory != null)
             {
-
-                for (int i = 0; i < kanbanBoards[boardId].userStoriesOnBoard.Count; i++)
+                foreach (Board board in kanbanBoards)
                 {
-                    if (kanbanBoards[boardId].userStoriesOnBoard[i].Id == userStory.Id)
+                    if (board.Id == boardId)
                     {
-                        kanbanBoards[boardId].userStoriesOnBoard[i] = userStory;
+                        for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
+                        {
+                            if (board.userStoriesOnBoard[i].Id == userStory.Id)
+                                board.userStoriesOnBoard[i] = userStory;
+                        }
+                        break;
                     }
                 }
+
                 //JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
         }

@@ -21,6 +21,7 @@
             <div class="card-body">
                 <p class="card-text">@userStory.Description</p>
             </div>
+            
             <div class="card-footer">
                 <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id">
                     <i class="fa fa-trash"></i>
@@ -31,6 +32,7 @@
                 <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id">
                     <i class="fa fa-edit"></i>
                 </a>
+                
             </div>
         </div>
     }

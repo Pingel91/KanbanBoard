@@ -38,4 +38,6 @@
         <input type="submit" value="Create" class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId" />
     </div>
 </form>
-
+<div>
+    <a asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">Back to UserStory Page</a>
+</div>

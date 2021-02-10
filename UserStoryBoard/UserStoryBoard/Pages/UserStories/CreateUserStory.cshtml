@@ -6,22 +6,25 @@
 <h1>Create UserStory</h1>
 
 <form method="post">
-    
+
+    <div class="form-group">
+        <label hidden asp-for="@Model.UserStory.Id"></label>
+    </div>
     <div class="form-group">
         <label asp-for="@Model.UserStory.Title" class="control-label"> Title </label>
         <input asp-for="@Model.UserStory.Title" class="form-control" />
-        <span asp-validation-for="@Model.UserStory.Title"  class="text-danger"></span>
+        <span asp-validation-for="@Model.UserStory.Title" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.UserStory.Description" class="control-label">Description </label>
         <input asp-for="@Model.UserStory.Description" class="form-control" />
-        <span asp-validation-for="@Model.UserStory.Description"  class="text-danger"></span>
+        <span asp-validation-for="@Model.UserStory.Description" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="@Model.UserStory.BusinessValue" class="control-label">BusinessValue</label>
         <input asp-for="@Model.UserStory.BusinessValue" class="form-control" />
-        <span asp-validation-for="@Model.UserStory.BusinessValue"   class="text-danger"></span>
+        <span asp-validation-for="@Model.UserStory.BusinessValue" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.UserStory.Priority" class="control-label">Priority</label>
@@ -31,13 +34,22 @@
     <div class="form-group">
         <label asp-for="@Model.UserStory.StoryPoints" class="control-label"> StoryPoints </label>
         <input asp-for="@Model.UserStory.StoryPoints" class="form-control" />
-        <span asp-validation-for="@Model.UserStory.StoryPoints"  class="text-danger"></span>
+        <span asp-validation-for="@Model.UserStory.StoryPoints" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label hidden asp-for="@Model.UserStory.CreationDate"></label>
+    </div>
+    <div class="form-group">
+        <label hidden asp-for="@Model.UserStory.BoardId"></label>
+    </div>
+    <div class="form-group">
+        <label hidden asp-for="@Model.UserStory.ColumnId"></label>
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId" />
+        <input type="submit" value="Create" class="btn btn-primary" asp-page-handler="Late"/>
     </div>
 </form>
 <div>
-    <a asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">Back to UserStory Page</a>
+    <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.boardId">Back to UserStory Page</a>
 </div>

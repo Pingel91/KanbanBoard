@@ -24,6 +24,7 @@ namespace UserStoryBoard.Models
         public UserStory()
         {
             Id = nextId++;
+            CreationDate = DateAndTime.Now;
         }
 
         public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 1)

@@ -39,26 +39,28 @@ function card_drag(id) {
 }
 
 function card_drop(card_id, column, boardId, column_id) {
-    var ajaxReq = ajaxSupport();
+    if (card_drag_id >= 0) {
+        var ajaxReq = ajaxSupport();
 
-    console.log(column);
+        console.log(column);
 
-    ajaxReq.open("GET", '/UserStories/MoveUserStory/' + card_id + '/' + boardId + '/' + column_id, true);
-    ajaxReq.send(null);
+        ajaxReq.open("GET", '/UserStories/MoveUserStory/' + card_id + '/' + boardId + '/' + column_id, true);
+        ajaxReq.send(null);
 
-    ajaxReq.onreadystatechange = function () {
-        if (ajaxReq.readyState == 4 && ajaxReq.status == 200) {
-            //var obj = JSON.parse(ajaxReq.responseText);
-            //if (obj.changed) {
-            //    inv.appendChild(document.getElementById(card_id));
-            //}
+        ajaxReq.onreadystatechange = function () {
+            if (ajaxReq.readyState == 4 && ajaxReq.status == 200) {
+                //var obj = JSON.parse(ajaxReq.responseText);
+                //if (obj.changed) {
+                //    inv.appendChild(document.getElementById(card_id));
+                //}
 
-            column.appendChild(document.getElementById(card_id));
-            location.reload(); 
-        }
-    };
+                column.appendChild(document.getElementById(card_id));
+                location.reload();
+            }
+        };
 
-    card_drag_id = -1;
+        card_drag_id = -1;
+    }
 }
 
 function card_drag_remove() {

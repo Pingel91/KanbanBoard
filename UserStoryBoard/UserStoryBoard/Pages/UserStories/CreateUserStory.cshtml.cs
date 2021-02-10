@@ -14,7 +14,7 @@ namespace UserStoryBoard.Pages.UserStories
         [BindProperty] 
         public UserStory UserStory { get; set; }
 
-        public int boardId;
+        public int BoardId;
         private BoardService boardService;
         //private UserStoryService userStoryService;
 
@@ -25,26 +25,13 @@ namespace UserStoryBoard.Pages.UserStories
 
         public IActionResult OnGet(int id)
         {
-            boardId = id;
+            BoardId = id;
             return Page();
         }
 
-        //public IActionResult OnPost()
-        //{
-        //    UserStory.BoardId = boardId;
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-        //    boardService.AddUserStory(UserStory, UserStory.BoardId);
-
-        //    return RedirectToPage("../Boards/KanbanBoard");
-        //}
-
-        public IActionResult OnPostLate()
+        public IActionResult OnPost()
         {
-            UserStory.BoardId = boardId;
+            UserStory.BoardId = BoardId;
 
             if (!ModelState.IsValid)
             {
@@ -52,7 +39,7 @@ namespace UserStoryBoard.Pages.UserStories
             }
             boardService.AddUserStory(UserStory, UserStory.BoardId);
 
-            return Redirect("~/Boards/KanbanBoard/" + boardId);
+            return Redirect("~/Boards/KanbanBoard/" + BoardId);
         }
     }
 }

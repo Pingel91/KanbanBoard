@@ -34,7 +34,7 @@ namespace UserStoryBoard.Pages.UserStories
             {
                 return Page();
             }
-            boardService.UpdateUserStory(UserStory, UserStory.BoardId);
+            boardService.UpdateUserStory(UserStory, boardId);
 
             return Redirect("~/Boards/KanbanBoard/" + boardId);
         }

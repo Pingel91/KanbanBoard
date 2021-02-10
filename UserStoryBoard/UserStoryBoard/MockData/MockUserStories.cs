@@ -48,7 +48,7 @@ namespace UserStoryBoard.MockData
             ),
             new UserStory
             (
-                "Column 2 Story", 
+                "Column DONE Story test", 
                 "As A programmer I want to move stories so...", 
                 3,  
                 1, 

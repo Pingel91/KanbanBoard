@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace UserStoryBoard.Services
         // PROPERTIES --------------------------------------------------------------------
         private List<Board> kanbanBoards;
         //private List<UserStory> userStories;
+        private int totalMockUserStories = 0;
 
         // CONSTRUCTOR -------------------------------------------------------------------
         public BoardService()
@@ -22,8 +24,17 @@ namespace UserStoryBoard.Services
             // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA 
             foreach (UserStory uS in MockUserStories.GetMockUserStories())
             {
-                kanbanBoards[uS.BoardId].userStoriesOnBoard.Add(uS);
+                for (int i = 0; i < kanbanBoards.Count; i++)
+                {
+                    if (kanbanBoards[i].Id == uS.BoardId)
+                    {
+                        kanbanBoards[i].userStoriesOnBoard.Add(uS);
+                        totalMockUserStories++;
+                        Debug.WriteLine($"\n------Added User Story: {uS.Title}\n ID: {uS.Id}\n - On board: {uS.BoardId}\n");
+                    }
+                }
             }
+            Debug.WriteLine($"Total Mock User Stories: {totalMockUserStories}");
         }
 
         // GET LISTS ---------------------------------------------------------------------
@@ -115,12 +126,17 @@ namespace UserStoryBoard.Services
                 {
                     if (board.Id == boardId)
                     {
-                        foreach (Board b in board.userStoriesOnBoard)
+                        Debug.WriteLine($"\n------Updating User Story: {userStory.Title}\n Entered board: {boardId}\n");
+                        for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
                         {
-                            if (b.Id == userStory.Id)
-                                b = userStory;
+                            if (board.userStoriesOnBoard[i].Id == userStory.Id)
+                            {
+                                Debug.WriteLine($"\n------User Story ID: {userStory.Id}\n");
+                                board.userStoriesOnBoard[i] = userStory;
+                                Debug.WriteLine($"\n------Updated User Story: {userStory.Title}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
+                                break;
+                            }
                         }
-                        break;
                     }
                 }
 

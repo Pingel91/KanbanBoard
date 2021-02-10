@@ -42,7 +42,7 @@ namespace UserStoryBoard.Pages.UserStories
 
             UserStory = boardService.GetUserStory(id, boardId);
             UserStory.ColumnId = userId;
-            boardService.UpdateUserStory(UserStory, UserStory.BoardId);
+            boardService.UpdateUserStory(UserStory, boardId);
         }
     }
 }

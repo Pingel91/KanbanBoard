@@ -2,30 +2,31 @@
 @using global::UserStoryBoard.Models
 @model UserStoryBoard.Pages.KanbanBoardModel
 @{
-    <h1>@Model.CurrentBoard.BoardName</h1>
+    <h1>@Model.GetCurrentBoard().BoardName</h1>
     <div class="jumbotron">
         <div class="container">
             <div class="mb-2">
-                <a class="btn" type="button" asp-page="../UserStories/CreateUserStory" asp-route-id="@Model.CurrentBoard.Id">
+                <a class="btn" type="button" asp-page="../UserStories/CreateUserStory" asp-route-id="@Model.GetCurrentBoard().Id">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
             <div class="row align-items-start">
-                @for (int i = 0; i < Model.CurrentBoard.Columns; i++)
+                @for (int i = 0; i < Model.GetCurrentBoard().Columns; i++)
                 {
-                    <div class="col-4" onmouseup="card_drop(card_drag_id, this, @Model.CurrentBoard.Id, @i)">
-                        <h2>@Model.CurrentBoard.ColumnNames[i]</h2>
-                        @foreach (UserStory userStory in Model.UserStories)
+                    <div class="col-4">
+                        <h2>@Model.GetCurrentBoard().ColumnNames[i]</h2>
+                        @foreach (UserStory userStory in Model.GetUserStories())
                         {
                             @if (userStory.ColumnId == i)
                             {
-                                <div class="card mb-2" style="width: 95%" id="@userStory.Id">
-                                    <div class="card-header p-2" onmousedown="card_drag(@userStory.Id)">
+                                <div class="card mb-2" style="width: 95%">
+                                    <div class="card-header p-2">
                                         <h5 class="card-title">
                                             <small class="text-muted">(@userStory.Id)</small> @userStory.Title
                                         </h5>
                                     </div>
                                     <div class="card-body">
+                                        <p class="card-text">Board ID: @userStory.BoardId</p>
                                         <p class="card-text">@userStory.Description</p>
                                     </div>
                                     <div class="card-footer">

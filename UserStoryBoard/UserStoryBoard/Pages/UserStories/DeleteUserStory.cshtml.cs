@@ -25,13 +25,13 @@ namespace UserStoryBoard.Pages
         public void OnGet(int id, int boardId)
         {
             UserStory = boardService.GetUserStory(id, boardId);
+            
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id, int boardId)
         {
-            UserStory deletedUserStory = boardService.DeleteUserStory(UserStory.Id, UserStory.BoardId);
-            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
-            return RedirectToPage(page);
+            boardService.DeleteUserStory(id, boardId);
+            return Redirect("~/Boards/KanbanBoard/" + boardId);
         }
     }
 }

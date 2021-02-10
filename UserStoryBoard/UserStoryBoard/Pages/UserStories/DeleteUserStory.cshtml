@@ -6,7 +6,14 @@
 <div class="alert alert-danger">
     <h5>Are you sure you want to delete the UserStory - @Model.UserStory.Title</h5>
     <form method="post">
-        <button type="submit" class="btn btn-danger">Yes</button>
-        <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">No</a>
+        <div class="form-group">
+            <input type="hidden" asp-for="@Model.UserStory.Id" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-danger">
+            Yes
+        </button>
+        <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">
+            No
+        </a>
     </form>
 </div>

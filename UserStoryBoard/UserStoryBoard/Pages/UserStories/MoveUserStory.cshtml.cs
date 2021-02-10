@@ -22,28 +22,27 @@ namespace UserStoryBoard.Pages.UserStories
             boardService = bService;
         }
 
-        public IActionResult OnPost()
+        public void OnPost(int id, int boardId, int userId)
         {
+            Debug.WriteLine("Post");
 
-
-            return Page();
+            UserStory = boardService.GetUserStory(id, boardId);
+            UserStory.ColumnId = userId;
+            boardService.UpdateUserStory(UserStory, UserStory.BoardId);
         }
 
-        public IActionResult OnGet(int id, int boardId)
+        public void OnGet(int id, int boardId, int userId)
         {
+            Debug.WriteLine("Get");
+
             if (!ModelState.IsValid)
             {
-                return Page();
+                
             }
 
             UserStory = boardService.GetUserStory(id, boardId);
-
-            UserStory.ColumnId = 2;
-
+            UserStory.ColumnId = userId;
             boardService.UpdateUserStory(UserStory, UserStory.BoardId);
-
-            string page = "../Boards/KanbanBoard/" + UserStory.BoardId;
-            return RedirectToPage(page);
         }
     }
 }

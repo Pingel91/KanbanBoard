@@ -28,7 +28,7 @@ function card_drag(id) {
     document.getElementsByTagName('body')[0].appendChild(drag);
 
     document.addEventListener('mouseup', function () {
-        //card_drag_remove();
+        card_drag_remove();
         document.getElementById(card_drag_id).style.opacity = "1";
     }, true);
     document.addEventListener('mousemove', function (event) {

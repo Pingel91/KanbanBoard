@@ -4,7 +4,7 @@
 @{
 }
 
-<div class="mb-2">
+<div class="m-2">
     <a class="btn btn-success" type="button" asp-page="CreateKanbanBoard">
         <i class="fa fa-plus"></i>
     </a>
@@ -13,16 +13,29 @@
 <div class="list-group">
     @for (int i = 0; i < Model.KanbanBoards.Count; i++)
     {
-    <div class="card-header m-sm-1">
-        <a class="list-group-item list-group-item-action text-light m-sm-1" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
-            @Model.KanbanBoards[i].Id) <strong>@Model.KanbanBoards[i].BoardName</strong> - @Model.KanbanBoards[i].Description <span style="float:right"> Created: @Model.KanbanBoards[i].CreationDate.Day/@Model.KanbanBoards[i].CreationDate.Month/@Model.KanbanBoards[i].CreationDate.Year </span>
-        </a>
-        <a class="btn btn-warning m-sm-1" type="button" asp-page="EditKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
-            <i class="fa fa-edit"></i>
-        </a>
-        <a class="btn btn-danger m-sm-1" type="button" asp-page="DeleteKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
-            <i class="fa fa-trash"></i>
-        </a>
+    <div class="card m-2">
+        @* HEADER TITLE *@
+        <div class="card-header p-0">
+            <a class="list-group-item list-group-item-info text-dark w-100 h-100" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
+                <strong class="text-dark">@Model.KanbanBoards[i].BoardName</strong> <span style="float:right"> Created: @Model.KanbanBoards[i].CreationDate.Day/@Model.KanbanBoards[i].CreationDate.Month/@Model.KanbanBoards[i].CreationDate.Year </span>
+            </a>
+        </div>
+        <div class="row m-2 pr-4 w-100">
+            @* DESCRIPTION *@
+            <div class="col-10 float-left">
+                <p class="float-left text-white w-100">@Model.KanbanBoards[i].Description</p>
+            </div>
+
+            @* BUTTONS *@
+            <div class="col-2 float-right">
+                <a class="btn btn-danger m-2 float-right" type="button" asp-page="DeleteKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a class="btn btn-warning m-2 float-right" type="button" asp-page="EditKanbanBoard" asp-route-boardId="@Model.KanbanBoards[i].Id">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+        </div>
     </div>
     }
 </div>

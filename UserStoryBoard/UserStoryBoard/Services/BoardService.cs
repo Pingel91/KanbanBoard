@@ -96,7 +96,27 @@ namespace UserStoryBoard.Services
 
         public void AddUserStory(UserStory aUserStory, int boardId)
         {
-            kanbanBoards[boardId].userStoriesOnBoard.Add(aUserStory);
+            Board b = null;
+            foreach (Board board in kanbanBoards)
+            {
+                if (board.Id == boardId)
+                {
+                    board.userStoriesOnBoard.Add(aUserStory);
+                    b = board;
+                    Debug.WriteLine($"ADDED USER STORY '{aUserStory.Title}' TO BOARD '{board.BoardName}'");
+                    Debug.WriteLine($"USER STORY IS ON COLUMN '{aUserStory.ColumnId}'");
+                }
+            }
+            if (b != null)
+            {
+                Debug.WriteLine($"UPDATED BOARD '{b.BoardName}'");
+                Debug.WriteLine($"USER STORIES ON THE BOARD:");
+                foreach (UserStory uS in b.userStoriesOnBoard)
+                {
+                    Debug.WriteLine($"{aUserStory.Title}");
+                }
+                UpdateBoard(b);
+            }
             //JsonFileUserStoryService.SaveJsonUserStories(userStories);
         }
 

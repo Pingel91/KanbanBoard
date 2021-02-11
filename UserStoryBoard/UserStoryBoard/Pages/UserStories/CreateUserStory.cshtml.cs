@@ -29,17 +29,18 @@ namespace UserStoryBoard.Pages.UserStories
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id)
         {
-            UserStory.BoardId = BoardId;
+            BoardId = id;
+            UserStory.BoardId = id;
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            boardService.AddUserStory(UserStory, UserStory.BoardId);
+            boardService.AddUserStory(UserStory, id);
 
-            return Redirect("~/Boards/KanbanBoard/" + BoardId);
+            return Redirect("~/Boards/KanbanBoard/" + id);
         }
     }
 }

@@ -9,27 +9,33 @@ using UserStoryBoard.Services;
 
 namespace UserStoryBoard.Pages.User
 {
-    public class DeleteUserModel : PageModel
+    public class EditUserModel : PageModel
     {
-        [BindProperty]
-        public User1 user { get; set; }
-
         private UserService userService;
 
-        public DeleteUserModel(UserService userService)
+        [BindProperty]
+        public User1 User { get; set; }
+
+        public EditUserModel(UserService userService)
         {
             this.userService = userService;
         }
 
         public IActionResult OnGet(int id)
         {
-            user = userService.GetUser(id);
+            User = userService.GetUser(id);
+
             return Page();
         }
 
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost()
         {
-            userService.DeleteUser(id);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            userService.UpdateUser(User);
+
             return RedirectToPage("GetUsers");
         }
     }

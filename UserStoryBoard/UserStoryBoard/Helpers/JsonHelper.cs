@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserStoryBoard.Models;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace UserStoryBoard.Helpers
 {
@@ -17,7 +19,7 @@ namespace UserStoryBoard.Helpers
                 try
                 {
                     string jsonString = File.ReadAllText(filename);
-                    jsonObject = JsonConvert.DeserializeObject<Dictionary<int, Course>(jsonString);
+                    jsonObject = JsonConvert.DeserializeObject<List<Board>>(jsonString);
                 }
                 catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
             }

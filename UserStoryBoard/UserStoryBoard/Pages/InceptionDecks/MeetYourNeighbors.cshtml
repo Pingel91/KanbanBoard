@@ -2,6 +2,89 @@
 @model UserStoryBoard.Pages.InceptionDecks.MeetYourNeighborsModel
 @{
     <h1>Meet Your Neighbors</h1>
-    <a href="/InceptionDecks/InceptionsDeck" class="btn btn-primary btn-sm" role="button">Back To Inception Deck</a>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <img src="~/Images/meet your neighbors.jpg" width="302" height="228" />
+                </div>
+                <div class="col-lg-4">
+                    <img src="~/Images/meet your neighbors - core team.jpg" width="302" height="228" />
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="Comment">Safety Officers:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <label for="Comment">Technical Writers:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4"><div class="form-group">
+                    <label for="Comment">Help desk:</label>
+                    <textarea class="form-control" row="6" id="Comment"></textarea>
+                </div></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <label for="Comment">Production support:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width: 100%; height: 100%"><h3 align="center">Core Team</h3>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Benny</a></li>
+                        <li><a href="#">Egon</a></li>
+                        <li><a href="#">Keld</a></li>
+                    </ul>
+                </div>
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+                            <label for="Comment">Infrastruture:</label>
+                            <textarea class="form-control" row="6" id="Comment"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <label for="Comment">Database Administrators:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <label for="Comment">Everyone Else:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group">
+                        <label for="Comment">Security:</label>
+                        <textarea class="form-control" row="6" id="Comment"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/InceptionDecks/InceptionsDeck" class="btn btn-primary btn-sm" role="button">Back To Inception Deck</a>
+    </div>
 
 }

@@ -12,7 +12,6 @@ namespace UserStoryBoard.Pages
         //public Board CurrentBoard { get; set; }
 
         public List<UserStory> UserStories { get; private set; }
-        public List<Board> KanbanBoards;
 
         private int boardId;
 
@@ -23,7 +22,6 @@ namespace UserStoryBoard.Pages
         public IActionResult OnGet(int id)
         {
             boardId = id;
-            GetData(id);
 
             return Page();
         }
@@ -31,8 +29,6 @@ namespace UserStoryBoard.Pages
         // For refreshing the page when moving a card
         public IActionResult OnGetColumn(int boardId, int userStoryId, int column)
         {
-            GetData(boardId);
-
             UserStory updated = boardService.GetUserStory(userStoryId, boardId);
 
             int result = updated.ColumnId + column;
@@ -43,13 +39,6 @@ namespace UserStoryBoard.Pages
             }
 
             return Page();
-        }
-
-        private void GetData(int id)
-        {
-            //CurrentBoard = boardService.GetBoard(id);
-            KanbanBoards = boardService.GetAllBoards();
-            //UserStories = boardService.GetUserStories(id);
         }
 
         public Board GetCurrentBoard()

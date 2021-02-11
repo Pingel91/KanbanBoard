@@ -14,7 +14,7 @@ function card_drag(id) {
     Array.from(cardStyle).forEach(key => drag.style.setProperty(key, cardStyle.getPropertyValue(key), cardStyle.getPropertyPriority(key)))
     drag.className = card.className;
 
-    //$(card).children().appendTo(drag);
+    $(card).children().clone(false).appendTo(drag);
 
     /* Set misc style options */
     drag.style.zIndex = "500";

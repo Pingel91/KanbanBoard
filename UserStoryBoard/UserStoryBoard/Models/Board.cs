@@ -12,8 +12,8 @@ namespace UserStoryBoard.Models
         public string BoardName { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
-        public int Columns { get; set; } = 3;
-        public List<string> ColumnNames { get; set; } = new List<string>() { "To Do", "Doing", "Done"};
+        public int Columns { get; set; } = 4;
+        public List<string> ColumnNames { get; set; } = new List<string>() { "To Do", "Doing", "To Test", "Done"};
         public List<UserStory> userStoriesOnBoard { get; set; } = new List<UserStory>();
 
         private static int nextId = 0;
@@ -33,11 +33,11 @@ namespace UserStoryBoard.Models
             CreationDate = DateTime.Now;
         }
 
-        public Board(string name, int cols, string descr)
+        public Board(string name, string descr)
         {
             Id = nextId++;
             BoardName = name;
-            Columns = cols;
+            //Columns = cols;
             //ColumnNames = colNames;
             Description = descr;
 

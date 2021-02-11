@@ -24,7 +24,7 @@ namespace UserStoryBoard
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
             services.AddSingleton<UserStoryService, UserStoryService>();
-            services.AddTransient<JsonFileUserStoryService>();
+            services.AddTransient<JsonFileBoards>();
             services.AddSingleton<BoardService, BoardService>();
             services.AddSingleton<UserService, UserService>();
         }

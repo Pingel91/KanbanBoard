@@ -32,7 +32,7 @@ namespace UserStoryBoard.Pages
             UserStory updated = boardService.GetUserStory(userStoryId, boardId);
 
             int result = updated.ColumnId + column;
-            if (result > -1 && result < GetCurrentBoard().Columns)
+            if (result > -1 && result < Board.Columns)
             {
                 updated.ColumnId = result; // FUCK THIS
                 boardService.UpdateUserStory(updated, boardService.GetBoard(boardId).Id);

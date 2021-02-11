@@ -32,8 +32,13 @@
             </td>
             <td>
                 <p>
-                    <a asp-page="EditPizza" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="DeletePizza" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="EditUser" asp-route-id="@item.Id">Edit
+                        <i class="fa fa-edit"></i>
+                        </a> |
+
+                    <a asp-page="DeleteUser" asp-route-id="@item.Id">Delete
+                        <i class="fa fa-trash"></i>
+                        </a>
                 </p>
             </td>
         </tr>

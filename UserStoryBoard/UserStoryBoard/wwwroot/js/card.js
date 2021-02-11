@@ -14,7 +14,7 @@ function card_drag(id) {
     Array.from(cardStyle).forEach(key => drag.style.setProperty(key, cardStyle.getPropertyValue(key), cardStyle.getPropertyPriority(key)))
     drag.className = card.className;
 
-    $(card).children().appendTo(drag);
+    $(card).children().clone(false).appendTo(drag);
 
     /* Set misc style options */
     drag.style.zIndex = "500";
@@ -28,7 +28,7 @@ function card_drag(id) {
     document.getElementsByTagName('body')[0].appendChild(drag);
 
     document.addEventListener('mouseup', function () {
-        //card_drag_remove();
+        card_drag_remove();
         document.getElementById(card_drag_id).style.opacity = "1";
     }, true);
     document.addEventListener('mousemove', function (event) {

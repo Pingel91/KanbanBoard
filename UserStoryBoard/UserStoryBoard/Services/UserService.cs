@@ -24,5 +24,36 @@ namespace UserStoryBoard.Services
             users.Add(aUser);
             // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
         }
+
+        public User1 GetUser (int id)
+        {
+            User1 TheUser = null;
+            foreach (User1 user in users)
+            {
+                if (user.Id == id)
+                {
+                    TheUser = user;
+                }
+            }
+
+            return TheUser;
+        }
+        public void DeleteUser(int UserId)
+        {
+            User1 userToBeDeleted = null;
+            foreach (User1 user in users)
+            {
+                if (user.Id == UserId)
+                {
+                    userToBeDeleted = user;
+                    break;
+                }
+            }
+            if (userToBeDeleted != null)
+            {
+                users.Remove(userToBeDeleted);
+
+            }
+        }
     }
 }

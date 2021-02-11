@@ -3,7 +3,7 @@
 @model UserStoryBoard.Pages.KanbanBoardModel
 @{
     <h1>@Model.GetCurrentBoard().BoardName</h1>
-        <div class="container-fluid p-md-4" style="background-color:slategray; overflow:scroll">
+        <div class="container-fluid p-md-4" style="background-color:slategray;">
             <div class="mb-2">
                 <a class="btn btn-success" type="button" asp-page="../UserStories/CreateUserStory" asp-route-id="@Model.GetCurrentBoard().Id">
                     <i class="fa fa-plus"></i>

@@ -11,41 +11,44 @@ namespace UserStoryBoard.Services
     public class BoardService
     {
         // PROPERTIES --------------------------------------------------------------------
-        private List<Board> kanbanBoards;
         //private List<UserStory> userStories;
-        private int totalMockUserStories = 0;
+        //private int totalMockUserStories = 0;
+        private JsonFileBoards boardJsonService;
 
         // CONSTRUCTOR -------------------------------------------------------------------
-        public BoardService()
+        public BoardService(JsonFileBoards bJsonService)
         {
-            kanbanBoards = MockKanbanBoards.GetMockBoards();
+            boardJsonService = bJsonService;
             //userStories = MockUserStories.GetMockUserStories();
 
+            // RUN THIS ONCE
+            //boardJsonService.SaveJsonBoards(MockKanbanBoards.kanbanBoards);
+
             // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA 
-            foreach (UserStory uS in MockUserStories.GetMockUserStories())
-            {
-                for (int i = 0; i < kanbanBoards.Count; i++)
-                {
-                    if (kanbanBoards[i].Id == uS.BoardId)
-                    {
-                        kanbanBoards[i].userStoriesOnBoard.Add(uS);
-                        totalMockUserStories++;
-                        Debug.WriteLine($"\n------Added User Story: {uS.Title}\n ID: {uS.Id}\n - On board: {uS.BoardId}\n");
-                    }
-                }
-            }
-            Debug.WriteLine($"Total Mock User Stories: {totalMockUserStories}");
+            //foreach (UserStory uS in MockUserStories.GetMockUserStories())
+            //{
+            //    for (int i = 0; i < kanbanBoards.Count; i++)
+            //    {
+            //        if (kanbanBoards[i].Id == uS.BoardId)
+            //        {
+            //            kanbanBoards[i].userStoriesOnBoard.Add(uS);
+            //            totalMockUserStories++;
+            //            Debug.WriteLine($"\n------Added User Story: {uS.Title}\n ID: {uS.Id}\n - On board: {uS.BoardId}\n");
+            //        }
+            //    }
+            //}
+            //Debug.WriteLine($"Total Mock User Stories: {totalMockUserStories}");
         }
 
         // GET LISTS ---------------------------------------------------------------------
         public List<Board> GetAllBoards()
         {
-            return kanbanBoards;
+            return boardJsonService.GetJsonBoards().ToList();
         }
 
         public List<UserStory> GetUserStories(int boardId)
         {
-            foreach (Board b in kanbanBoards)
+            foreach (Board b in boardJsonService.GetJsonBoards())
             {
                 if (b.Id == boardId)
                     return b.userStoriesOnBoard;
@@ -58,7 +61,7 @@ namespace UserStoryBoard.Services
         public Board GetBoard(int id)
         {
             Board theBoard = null;
-            foreach (Board b in kanbanBoards)
+            foreach (Board b in boardJsonService.GetJsonBoards())
             {
                 if (b.Id == id)
                 {
@@ -71,7 +74,7 @@ namespace UserStoryBoard.Services
 
         public UserStory GetUserStory(int id, int boardId)
         {
-            foreach (Board board in kanbanBoards)
+            foreach (Board board in boardJsonService.GetJsonBoards())
             {
                 if (board.Id == boardId)
                 {
@@ -88,21 +91,27 @@ namespace UserStoryBoard.Services
         }
 
         // ADD ---------------------------------------------------------------------------
-        public void AddBoard(Board aBoard)
+        public void AddBoard(Board board)
         {
-            kanbanBoards.Add(aBoard);
-            // JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+            newBoards.Add(board);
+            boardJsonService.SaveJsonBoards(newBoards);
         }
 
         public void AddUserStory(UserStory aUserStory, int boardId)
         {
             Board b = null;
-            foreach (Board board in kanbanBoards)
+            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+
+            foreach (Board board in newBoards)
             {
                 if (board.Id == boardId)
                 {
                     board.userStoriesOnBoard.Add(aUserStory);
                     b = board;
+
+                    boardJsonService.SaveJsonBoards(newBoards);
+
                     Debug.WriteLine($"ADDED USER STORY '{aUserStory.Title}' TO BOARD '{board.BoardName}'");
                     Debug.WriteLine($"USER STORY IS ON COLUMN '{aUserStory.ColumnId}'");
                 }
@@ -125,11 +134,14 @@ namespace UserStoryBoard.Services
         {
             if (board != null)
             {
-                for (int i = 0; i < kanbanBoards.Count; i++)
+                List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+
+                for (int i = 0; i < boardJsonService.GetJsonBoards().ToList().Count; i++)
                 {
-                    if (kanbanBoards[i].Id == board.Id)
+                    if (boardJsonService.GetJsonBoards().ToList()[i].Id == board.Id)
                     {
-                        kanbanBoards[i] = board;
+                        newBoards[i] = board;
+                        boardJsonService.SaveJsonBoards(newBoards);
                     }
                 }
 
@@ -142,7 +154,7 @@ namespace UserStoryBoard.Services
         {
             if (userStory != null)
             {
-                foreach (Board board in kanbanBoards)
+                foreach (Board board in boardJsonService.GetJsonBoards())
                 {
                     if (board.Id == boardId)
                     {
@@ -151,8 +163,10 @@ namespace UserStoryBoard.Services
                         {
                             if (board.userStoriesOnBoard[i].Id == userStory.Id)
                             {
-                                Debug.WriteLine($"\n------User Story ID: {userStory.Id}\n");
                                 board.userStoriesOnBoard[i] = userStory;
+
+                                UpdateBoard(board);
+
                                 Debug.WriteLine($"\n------Updated User Story: {userStory.Title}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
                                 break;
                             }
@@ -168,26 +182,29 @@ namespace UserStoryBoard.Services
 
         public void DeleteBoardId(int boardId)
         {
-            Board boardtoBeDeleted = null;
-            foreach (Board board in kanbanBoards)
+            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+
+            // Find the board to delete
+            foreach (Board board in newBoards)
             {
                 if (board.Id == boardId)
                 {
-                    boardtoBeDeleted = board;
+                    // Remove it from the temporary list of boards, and save that to JSON
+                    newBoards.Remove(board);
+                    boardJsonService.SaveJsonBoards(newBoards);
                     break;
                 }
             }
-            if (boardtoBeDeleted != null)
-            {
-                kanbanBoards.Remove(boardtoBeDeleted);
-                
-            }
+
         }
 
         public UserStory DeleteUserStory(int userStoryId, int boardId)
         {
             UserStory userStoryToBeDeleted = null;
-            foreach (UserStory us in kanbanBoards[boardId].userStoriesOnBoard)
+            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+
+            // Find the User Story to be deleted
+            foreach (UserStory us in newBoards[boardId].userStoriesOnBoard)
             {
                 if (us.Id == userStoryId)
                 {
@@ -195,11 +212,14 @@ namespace UserStoryBoard.Services
                     break;
                 }
             }
+
+            // Remove it from the temporary list of boards, and save that to JSON
             if (userStoryToBeDeleted != null)
             {
-                kanbanBoards[boardId].userStoriesOnBoard.Remove(userStoryToBeDeleted);
-                //JsonFileUserStoryService.SaveJsonUserStories(userStories);
+                newBoards[boardId].userStoriesOnBoard.Remove(userStoryToBeDeleted);
+                boardJsonService.SaveJsonBoards(newBoards);
             }
+
             return userStoryToBeDeleted;
         }
     }

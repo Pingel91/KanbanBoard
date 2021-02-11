@@ -16,6 +16,7 @@ namespace UserStoryBoard.Pages.UserStories
 
         public int BoardId;
         private BoardService boardService;
+        //private JsonFileUserStoryService userStoryService;
         //private UserStoryService userStoryService;
 
         public CreateUserStoryModel(BoardService bService)

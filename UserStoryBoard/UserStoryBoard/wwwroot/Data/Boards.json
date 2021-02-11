@@ -1,0 +1,21 @@
+[
+  {
+    "Id": 0,
+    "BoardName": "Caspars Test Board test",
+    "Description": "asd",
+    "CreationDate": "2021-02-11T15:08:45.9762998+01:00",
+    "userStoriesOnBoard": [
+      {
+        "Id": 0,
+        "Title": "asd",
+        "Description": "asd",
+        "BusinessValue": 3,
+        "CreationDate": "2021-02-11T15:10:55.2254826+01:00",
+        "Priority": 3,
+        "StoryPoints": "sd",
+        "BoardId": 0,
+        "ColumnId": 0
+      }
+    ]
+  }
+]

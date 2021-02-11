@@ -10,38 +10,38 @@
             </a>
         </div>
         <div class="row align-items-start">
-            @for (int i = 0; i < Model.GetCurrentBoard().Columns; i++)
+            @for (int i = 0; i < Board.Columns; i++)
             {
                 <div class="col-4" onmouseup="card_drop(card_drag_id, this, @Model.GetCurrentBoard().Id, @i)">
-                    <h2>@Model.GetCurrentBoard().ColumnNames[i]</h2>
+                    <h2>@Board.ColumnNames[i]</h2>
                     @foreach (UserStory userStory in Model.GetUserStories())
                     {
                         @if (userStory.ColumnId == i)
                         {
                             <div class="card mb-2" style="width: 95%" id="@userStory.Id">
                                 <div class="card-header p-2" onmousedown="card_drag(@userStory.Id)">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title text-white">
                                         <small class="text-muted">(@userStory.Id)</small> @userStory.Title
                                     </h5>
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">Board ID: @userStory.BoardId</p>
-                                    <p class="card-text">@userStory.Description</p>
+                                    <p class="card-text text-white">@userStory.Description</p>
                                 </div>
-                                <div class="card-footer">
-                                    <a class="btn" type="button" asp-page="../UserStories/DeleteUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                    <a class="btn" type="button" asp-page="../UserStories/UserStoryDetail" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                <div class="card-footer m-md-4">
+                                    <a class="btn btn-secondary m-md-2" type="button" asp-page="../UserStories/UserStoryDetail" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
                                         <i class="fa fa-info-circle"></i>
                                     </a>
-                                    <a class="btn" type="button" asp-page="../UserStories/EditUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                    <a class="btn btn-warning m-sm-1" type="button" asp-page="../UserStories/EditUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(-1)" asp-page-handler="Column">
+                                    <a class="btn btn-danger m-sm-1" type="button" asp-page="../UserStories/DeleteUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <a class="btn btn-dark m-sm-1 align-content-end" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(-1)" asp-page-handler="Column">
                                         <i class="fa fa-arrow-left"></i>
                                     </a>
-                                    <a class="btn" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(1)" asp-page-handler="Column">
+                                    <a class="btn btn-dark m-sm-1 align-content-end" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(1)" asp-page-handler="Column">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>
                                 </div>

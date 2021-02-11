@@ -32,6 +32,7 @@ namespace UserStoryBoard.Pages.Boards
             {
                 return Page();
             }
+            
             boardService.AddBoard(KanbanBoard);
 
             return RedirectToPage("SelectKanbanBoard");

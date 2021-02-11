@@ -11,9 +11,9 @@ namespace UserStoryBoard.MockData
 
         public static List<Board> kanbanBoards = new List<Board>()
         {
-            new Board("Kanban Board 1", new List<string>{ "To Do", "Doing", "Done"}, 3, "Pretty simple Kanban Board 1"),
-            new Board("Caspars Test Board", new List<string>{ "To Do", "Doing", "Done"}, 3, "Caspars mega cool board"),
-            new Board("Board", new List<string>{ "To Do", "Doing", "Done"}, 3, "wot")
+            new Board("Kanban Board 1", 3, "Pretty simple Kanban Board 1"),
+            new Board("Caspars Test Board", 3, "Caspars mega cool board"),
+            new Board("Board", 3, "wot")
         };
 
 

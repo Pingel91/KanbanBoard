@@ -55,5 +55,20 @@ namespace UserStoryBoard.Services
 
             }
         }
+        public void UpdateUser(User1 user)
+        {
+            if (user != null)
+            {
+                for (int i = 0; i < users.Count; i++)
+                {
+                    if (users[i].Id == user.Id)
+                    {
+                        users[i] = user;
+                    }
+                }
+
+                //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
+            }
+        }
     }
 }

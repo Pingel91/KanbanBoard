@@ -2,6 +2,16 @@
 @model UserStoryBoard.Pages.InceptionDecks.UpAtNightModel
 @{
     <h1>Up At Night</h1>
-    <a href="/InceptionDecks/InceptionsDeck" class="btn btn-primary btn-sm" role="button">Back To Inception Deck</a>
+    <div class="jumbotron">
+        <div class="container">
+            <img src="~/Images/keep you up at night.jpg" width="302" height="228" />
+            <br />
+            <div class="form-group">
+                <label for="Comment">Why are we here?:</label>
+                <textarea class="form-control" row="6" id="comment"></textarea>
+            </div>
+        </div>
+        <a href="/InceptionDecks/InceptionsDeck" class="btn btn-primary btn-sm" role="button">Back To Inception Deck</a>
+    </div>
 
 }

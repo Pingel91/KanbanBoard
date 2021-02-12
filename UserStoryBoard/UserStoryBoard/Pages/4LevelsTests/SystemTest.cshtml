@@ -1,0 +1,123 @@
+﻿@page
+@model UserStoryBoard.Pages._4LevelsTests.SystemTestModel
+@{
+    <h1>System Test Overview</h1>
+    <div class="jumbotron">
+        <div class="container">
+            <table class="table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        Test Case Id
+                    </th>
+                
+                
+                    <th>
+                        Test Case Discription
+                    </th>
+                
+                
+                    <th>
+                        Test Steps
+                    </th>
+
+                    <th>
+                        Test Data
+                    </th>
+                
+                
+                    <th>
+                        Expected Result
+                    </th>
+                
+                
+                    <th>
+                        Actual Result
+                    </th>
+                
+                
+                    <th>
+                        Passed
+                    </th>
+                
+                
+                    <th>
+                        Not Passed
+                    </th>
+                </tr>
+            </thead>
+
+                <tbody>
+                    @if (Model.SystemTests != null)
+                    {
+                        foreach (var systemTest in Model.ModelState)
+                        {
+                            <tr>
+                                <td>
+
+                                </td>
+
+
+                                <td>
+
+                                </td>
+
+
+                                <td>
+
+                                </td>
+
+
+                                <td>
+
+                                </td>
+
+
+                                <td>
+
+                                </td>
+
+
+                                <td>
+
+                                </td>
+
+
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Passed</label>
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Not Passed</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <!--Input data area-->
+                <tfoot>
+                    <tr>@for (int i = 0; i < Model.SystemTests; i++)
+                        {
+                            <table class="table-bordered">
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        }</tr>
+                </tfoot>
+            </table>
+            
+            
+        </div>
+
+    </div>
+
+}

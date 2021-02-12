@@ -21,5 +21,17 @@ namespace UserStoryBoard.Models
         {
             Id = nextId++;
         }
+
+        public Test(string name, string description, string steps, string data, string expectedResult, string actualResult, bool passed)
+        {
+            Id = nextId;
+            Name = name;
+            Description = description;
+            Steps = steps;
+            Data = data;
+            ExpectedResult = expectedResult;
+            ActualResult = actualResult;
+            Passed = passed;
+        }
     }
 }

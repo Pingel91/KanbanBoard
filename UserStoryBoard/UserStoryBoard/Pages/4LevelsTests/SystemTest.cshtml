@@ -39,65 +39,98 @@
                     <th>
                         Passed
                     </th>
-                
-                
-                    <th>
-                        Not Passed
-                    </th>
+
                 </tr>
             </thead>
 
                 <tbody>
-                    @if (Model.SystemTests != null)
+                <tr>
+                    <td>
+
+                    </td>
+
+
+                    <td>
+
+                    </td>
+
+
+                    <td>
+
+                    </td>
+
+
+                    <td>
+
+                    </td>
+
+
+                    <td>
+
+                    </td>
+
+
+                    <td>
+
+                    </td>
+
+
+                    <td>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" style="align-content: center"/></label>
+                        </div>
+                    </td>
+                </tr>
+                @if (Model.SystemTests != null)
+                {
+                    foreach (var systemTest in Model.ModelState)
                     {
-                        foreach (var systemTest in Model.ModelState)
-                        {
-                            <tr>
-                                <td>
-
-                                </td>
+                        <tr>
+                            <td>
+                                @Model.System.Id
+                            </td>
 
 
-                                <td>
+                            <td>
 
-                                </td>
-
-
-                                <td>
-
-                                </td>
+                            </td>
 
 
-                                <td>
+                            <td>
 
-                                </td>
-
-
-                                <td>
-
-                                </td>
+                            </td>
 
 
-                                <td>
+                            <td>
 
-                                </td>
-
-
-                                <td>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Passed</label>
-                                    </div>
-                                </td>
+                            </td>
 
 
-                                <td>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Not Passed</label>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
+                            <td>
+
+                            </td>
+
+
+                            <td>
+
+                            </td>
+
+
+                            <td>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Passed</label>
+                                </div>
+                            </td>
+
+
+                            <td>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" style="width: 50px; height: 50px"/>Not Passed</label>
+                                </div>
+                            </td>
+                        </tr>
                     }
+                }
                 </tbody>
                 <!--Input data area-->
                 <tfoot>
@@ -111,7 +144,8 @@
                                 </tr>
 
                             </table>
-                        }</tr>
+                        }
+                    </tr>
                 </tfoot>
             </table>
             

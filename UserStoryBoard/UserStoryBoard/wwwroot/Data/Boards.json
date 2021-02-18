@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "userStoriesOnBoard": [
+      {
+        "BusinessValue": 2,
+        "Priority": 2,
+        "StoryPoints": "nej",
+        "BoardId": 0,
+        "ColumnId": 1,
+        "Id": 0,
+        "Name": "Test 2",
+        "Description": "23fas",
+        "CreationDate": "0001-01-01T00:00:00"
+      },
+      {
+        "BusinessValue": 2,
+        "Priority": 2,
+        "StoryPoints": "nej",
+        "BoardId": 0,
+        "ColumnId": 0,
+        "Id": 0,
+        "Name": "Test",
+        "Description": "sadas",
+        "CreationDate": "0001-01-01T00:00:00"
+      }
+    ],
+    "Id": 0,
+    "Name": "Kanban Board 1",
+    "Description": "Pretty simple Kanban Board 1. Long description is very very nice, so now we can see how that will look!",
+    "CreationDate": "2021-02-18T11:10:25.7189657+01:00"
+  },
+  {
+    "userStoriesOnBoard": [],
+    "Id": 1,
+    "Name": "Caspars Test Board",
+    "Description": "Caspars mega cool board",
+    "CreationDate": "2021-02-18T11:10:25.7189771+01:00"
+  },
+  {
+    "userStoriesOnBoard": [],
+    "Id": 2,
+    "Name": "Board",
+    "Description": "wot",
+    "CreationDate": "2021-02-18T11:10:25.7189779+01:00"
+  }
+]

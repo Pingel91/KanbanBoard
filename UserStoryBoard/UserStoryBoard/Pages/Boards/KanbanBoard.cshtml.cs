@@ -11,7 +11,9 @@ namespace UserStoryBoard.Pages
     {
         //private BoardService boardService;
         IBoards boards;
-        //public Board CurrentBoard { get; set; }
+
+        [BindProperty]
+        public UserStory UserStory { get; set; }
 
         public List<UserStory> UserStories { get; private set; }
 

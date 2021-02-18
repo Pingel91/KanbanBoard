@@ -19,7 +19,9 @@ namespace UserStoryBoard.Pages
         // private BoardService boardService;
         IBoards boards;
 
-        
+        //public Board CurrentBoard { get; set; }
+
+        private int boardId;
 
         public UserStoryDetailModel(IBoards repo)
         {
@@ -27,8 +29,19 @@ namespace UserStoryBoard.Pages
         }
         public void OnGet(int id, int boardId)
         {
+            this.boardId = boardId;
+
             UserStories = boards.GetUserStories(boardId);
             UserStory = boards.GetUserStory(id, boardId);
+        }
+
+        public Board GetCurrentBoard()
+        {
+            return boards.GetBoard(boardId);
+        }
+        public List<UserStory> GetUserStories()
+        {
+            return boards.GetUserStories(boardId);
         }
     }
 }

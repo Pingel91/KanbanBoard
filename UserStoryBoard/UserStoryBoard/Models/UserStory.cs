@@ -6,13 +6,9 @@ using Microsoft.VisualBasic;
 
 namespace UserStoryBoard.Models
 {
-    public class UserStory
+    public class UserStory : CardTemplate
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
         public int BusinessValue { get; set; }
-        public DateTime CreationDate { get; set; }
         public int Priority { get; set; }
         public string StoryPoints { get; set; }
 
@@ -23,14 +19,18 @@ namespace UserStoryBoard.Models
 
         public UserStory()
         {
+        }
+
+        public UserStory(string name) : base (name)
+        {
             Id = nextId++;
             CreationDate = DateAndTime.Now;
         }
 
-        public UserStory(string title, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 0)
+        public UserStory(string name, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 0) : base(name)
         {
             Id = nextId++;
-            Title = title;
+            //Name = name;
             Description = description;
             BusinessValue = businessValue;
             CreationDate = DateAndTime.Now;

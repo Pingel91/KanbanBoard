@@ -2,7 +2,7 @@
 @using global::UserStoryBoard.Models
 @model UserStoryBoard.Pages.KanbanBoardModel
 @{
-    <h1>@Model.GetCurrentBoard().BoardName</h1>
+    <h1>@Model.GetCurrentBoard().Name</h1>
     <div class="container-fluid p-md-4" style="background-color:#181A1E;">
         <div class="mb-2">
             <a class="btn btn-success" type="button" asp-page="../UserStories/CreateUserStory" asp-route-id="@Model.GetCurrentBoard().Id">
@@ -21,7 +21,7 @@
                             <div class="card mb-2" style="width: 95%" id="@userStory.Id">
                                 <div class="card-header p-2" onmousedown="card_drag(@userStory.Id)">
                                     <h5 class="card-title text-white">
-                                        <small class="text-muted">(@userStory.Id)</small> @userStory.Title
+                                        <small class="text-muted">(@userStory.Id)</small> @userStory.Name
                                     </h5>
                                 </div>
                                 <div class="card-body">

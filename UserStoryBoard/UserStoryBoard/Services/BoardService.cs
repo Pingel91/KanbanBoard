@@ -112,17 +112,17 @@ namespace UserStoryBoard.Services
 
                     boardJsonService.SaveJsonBoards(newBoards);
 
-                    Debug.WriteLine($"ADDED USER STORY '{aUserStory.Title}' TO BOARD '{board.BoardName}'");
+                    Debug.WriteLine($"ADDED USER STORY '{aUserStory.Name}' TO BOARD '{board.Name}'");
                     Debug.WriteLine($"USER STORY IS ON COLUMN '{aUserStory.ColumnId}'");
                 }
             }
             if (b != null)
             {
-                Debug.WriteLine($"UPDATED BOARD '{b.BoardName}'");
+                Debug.WriteLine($"UPDATED BOARD '{b.Name}'");
                 Debug.WriteLine($"USER STORIES ON THE BOARD:");
                 foreach (UserStory uS in b.userStoriesOnBoard)
                 {
-                    Debug.WriteLine($"{aUserStory.Title}");
+                    Debug.WriteLine($"{aUserStory.Name}");
                 }
                 UpdateBoard(b);
             }
@@ -158,7 +158,7 @@ namespace UserStoryBoard.Services
                 {
                     if (board.Id == boardId)
                     {
-                        Debug.WriteLine($"\n------Updating User Story: {userStory.Title}\n Entered board: {boardId}\n");
+                        Debug.WriteLine($"\n------Updating User Story: {userStory.Name}\n Entered board: {boardId}\n");
                         for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
                         {
                             if (board.userStoriesOnBoard[i].Id == userStory.Id)
@@ -167,7 +167,7 @@ namespace UserStoryBoard.Services
 
                                 UpdateBoard(board);
 
-                                Debug.WriteLine($"\n------Updated User Story: {userStory.Title}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
+                                Debug.WriteLine($"\n------Updated User Story: {userStory.Name}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
                                 break;
                             }
                         }

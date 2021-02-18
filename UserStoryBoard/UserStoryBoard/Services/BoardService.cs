@@ -24,7 +24,7 @@ namespace UserStoryBoard.Services
             backlogJsonService = BLJsonService;
             //userStories = MockUserStories.GetMockUserStories();
 
-            // RUN THIS ONCE
+            // RUN THESE ONCE TO SET UP MOCK DATA
             //boardJsonService.SaveJsonBoards(MockKanbanBoards.kanbanBoards);
 
             // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA 

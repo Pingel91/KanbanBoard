@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserStoryBoard.Interface;
 using UserStoryBoard.Models;
 using UserStoryBoard.Services;
 
@@ -14,11 +15,12 @@ namespace UserStoryBoard.Pages.Boards
         [BindProperty]
         public Board KanbanBoard { get; set; }
 
-        private BoardService boardService;
+        //private BoardService boardService;
+        public IBoards boards;
 
-        public CreateKanbanBoardModel(BoardService bService)
+        public CreateKanbanBoardModel(IBoards repo)
         {
-            boardService = bService;
+            boards = repo;
         }
 
         public IActionResult OnGet()
@@ -33,7 +35,7 @@ namespace UserStoryBoard.Pages.Boards
                 return Page();
             }
             
-            boardService.AddBoard(KanbanBoard);
+            boards.AddBoard(KanbanBoard);
 
             return RedirectToPage("SelectKanbanBoard");
         }

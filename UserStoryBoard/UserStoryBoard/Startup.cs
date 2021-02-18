@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UserStoryBoard.Interface;
 using UserStoryBoard.Services;
 
 namespace UserStoryBoard
@@ -25,7 +26,7 @@ namespace UserStoryBoard
             services.AddRazorPages();
             services.AddSingleton<UserStoryService, UserStoryService>();
             services.AddTransient<JsonFileBoards>();
-            services.AddSingleton<BoardService, BoardService>();
+            services.AddSingleton<IBoards, BoardService>();
             services.AddSingleton<UserService, UserService>();
         }
 

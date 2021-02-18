@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserStoryBoard.Interface;
 using UserStoryBoard.Models;
 using UserStoryBoard.Services;
 
@@ -15,22 +16,25 @@ namespace UserStoryBoard.Pages.Boards
         public Board Board { get; set; }
 
 
-        private BoardService boardService;
+        //private BoardService boardService;
+        public IBoards boards;
 
-        public DeleteKanbanBoardModel(BoardService boardService)
+
+        public DeleteKanbanBoardModel(IBoards repo)
         {
-            this.boardService = boardService;
+            boards = repo;
+            //this.boardService = boardService;
         }
 
         public IActionResult OnGet(int boardId)
         {
-            Board = boardService.GetBoard(boardId);
+            Board = boards.GetBoard(boardId);
             return Page();
         }
 
         public IActionResult OnPost(int boardId)
         {
-            boardService.DeleteBoardId(boardId);
+            boards.DeleteBoardId(boardId);
             return RedirectToPage("SelectKanbanBoard");
         }
     }

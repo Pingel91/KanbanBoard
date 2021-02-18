@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using UserStoryBoard.MockData;
 using UserStoryBoard.Models;
+using UserStoryBoard.Interface;
 
 namespace UserStoryBoard.Services
 {
-    public class BoardService
+    public class BoardService : IBoards
     {
         // PROPERTIES --------------------------------------------------------------------
         //private List<UserStory> userStories;

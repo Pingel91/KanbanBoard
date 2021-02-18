@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserStoryBoard.Interface;
 using UserStoryBoard.Models;
 using UserStoryBoard.Services;
 
@@ -15,18 +16,19 @@ namespace UserStoryBoard.Pages
         public UserStory UserStory { get; set; }
 
         public List<UserStory> UserStories { get; private set; }
-        private BoardService boardService;
+        // private BoardService boardService;
+        IBoards boards;
 
         
 
-        public UserStoryDetailModel(BoardService bService)
+        public UserStoryDetailModel(IBoards repo)
         {
-            boardService = bService;
+            boards = repo;
         }
         public void OnGet(int id, int boardId)
         {
-            UserStories = boardService.GetUserStories(boardId);
-            UserStory = boardService.GetUserStory(id, boardId);
+            UserStories = boards.GetUserStories(boardId);
+            UserStory = boards.GetUserStory(id, boardId);
         }
     }
 }

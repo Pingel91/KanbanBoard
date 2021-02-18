@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{id:int}/{backlog:bool}"
 @model UserStoryBoard.Pages.UserStories.CreateUserStoryModel
 @{
     ViewData["Title"] = "CreateUserStory";
@@ -51,5 +51,14 @@
     </div>
 </form>
 <div>
-    <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.BoardId">Back to UserStory Page</a>
+    @{
+        @if (Model.InBacklog())
+        {
+            <a class="btn btn-primary" asp-page="../Backlogs/BacklogUserStory" asp-route-id="@Model.BoardId">Back to Backlog</a>
+        }
+        @if (!Model.InBacklog())
+        { 
+            <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.BoardId">Back to Kanban Board</a>
+        }
+    }
 </div>

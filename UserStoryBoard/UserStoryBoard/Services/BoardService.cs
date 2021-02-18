@@ -12,35 +12,15 @@ namespace UserStoryBoard.Services
     public class BoardService : IBoards
     {
         // PROPERTIES --------------------------------------------------------------------
-        //private List<UserStory> userStories;
-        //private int totalMockUserStories = 0;
         private JsonFileBoards boardJsonService;
-        private BacklogJsonService backlogJsonService;
 
         // CONSTRUCTOR -------------------------------------------------------------------
-        public BoardService(JsonFileBoards bJsonService, BacklogJsonService BLJsonService)
+        public BoardService(JsonFileBoards bJsonService)
         {
             boardJsonService = bJsonService;
-            backlogJsonService = BLJsonService;
-            //userStories = MockUserStories.GetMockUserStories();
 
-            // RUN THESE ONCE TO SET UP MOCK DATA
+            // RUN THIS ONCE TO SET UP MOCK DATA
             //boardJsonService.SaveJsonBoards(MockKanbanBoards.kanbanBoards);
-
-            // TEMPORARILY SETTING USER STORIES ON A BOARD TO MOCK DATA 
-            //foreach (UserStory uS in MockUserStories.GetMockUserStories())
-            //{
-            //    for (int i = 0; i < kanbanBoards.Count; i++)
-            //    {
-            //        if (kanbanBoards[i].Id == uS.BoardId)
-            //        {
-            //            kanbanBoards[i].userStoriesOnBoard.Add(uS);
-            //            totalMockUserStories++;
-            //            Debug.WriteLine($"\n------Added User Story: {uS.Title}\n ID: {uS.Id}\n - On board: {uS.BoardId}\n");
-            //        }
-            //    }
-            //}
-            //Debug.WriteLine($"Total Mock User Stories: {totalMockUserStories}");
         }
 
         // GET LISTS ---------------------------------------------------------------------
@@ -54,17 +34,17 @@ namespace UserStoryBoard.Services
             foreach (Board b in boardJsonService.GetJsonBoards())
             {
                 if (b.Id == boardId)
-                    return b.userStoriesOnBoard;
+                    return b.UserStoriesOnBoard;
             }
 
             return null;
         }
         public List<UserStory> GetUserStoriesInBacklog(int boardId)
         {
-            foreach (Backlog b in backlogJsonService.GetJsonBacklogs())
+            foreach (Board b in boardJsonService.GetJsonBoards())
             {
                 if (b.Id == boardId)
-                    return b.userStoriesInBacklog;
+                    return b.BoardBacklog.UserStoriesInBacklog;
             }
 
             return null;
@@ -91,10 +71,10 @@ namespace UserStoryBoard.Services
             {
                 if (board.Id == boardId)
                 {
-                    for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
+                    for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
                     {
-                        if (board.userStoriesOnBoard[i].Id == id)
-                            return board.userStoriesOnBoard[i];
+                        if (board.UserStoriesOnBoard[i].Id == id)
+                            return board.UserStoriesOnBoard[i];
                     }
                     break;
                 }
@@ -106,11 +86,11 @@ namespace UserStoryBoard.Services
         public Backlog GetBacklog(int boardId)
         {
             Backlog theBacklog = null;
-            foreach (Backlog bl in backlogJsonService.GetJsonBacklogs())
+            foreach (Board b in boardJsonService.GetJsonBoards())
             {
-                if (bl.Id == boardId)
+                if (b.Id == boardId)
                 {
-                    theBacklog = bl;
+                    theBacklog = b.BoardBacklog;
                 }
                 
             }
@@ -127,7 +107,7 @@ namespace UserStoryBoard.Services
             boardJsonService.SaveJsonBoards(newBoards);
         }
 
-        public void AddUserStory(UserStory aUserStory, int boardId)
+        public void AddUserStory(UserStory aUserStory, int boardId, bool backlog)
         {
             Board b = null;
             List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
@@ -136,7 +116,12 @@ namespace UserStoryBoard.Services
             {
                 if (board.Id == boardId)
                 {
-                    board.userStoriesOnBoard.Add(aUserStory);
+                    // Add to backlog if we came from the Backlog page
+                    if (backlog)
+                        board.BoardBacklog.UserStoriesInBacklog.Add(aUserStory);
+                    else
+                        board.UserStoriesOnBoard.Add(aUserStory);
+
                     b = board;
 
                     boardJsonService.SaveJsonBoards(newBoards);
@@ -149,13 +134,12 @@ namespace UserStoryBoard.Services
             {
                 Debug.WriteLine($"UPDATED BOARD '{b.Name}'");
                 Debug.WriteLine($"USER STORIES ON THE BOARD:");
-                foreach (UserStory uS in b.userStoriesOnBoard)
+                foreach (UserStory uS in b.UserStoriesOnBoard)
                 {
                     Debug.WriteLine($"{aUserStory.Name}");
                 }
                 UpdateBoard(b);
             }
-            //JsonFileUserStoryService.SaveJsonUserStories(userStories);
         }
 
         // UPDATE ------------------------------------------------------------------------
@@ -173,8 +157,6 @@ namespace UserStoryBoard.Services
                         boardJsonService.SaveJsonBoards(newBoards);
                     }
                 }
-
-                //JsonFileUserStoryService.SaveJsonUserStories(kanbanBoards);
             }
         }
 
@@ -188,11 +170,11 @@ namespace UserStoryBoard.Services
                     if (board.Id == boardId)
                     {
                         Debug.WriteLine($"\n------Updating User Story: {userStory.Name}\n Entered board: {boardId}\n");
-                        for (int i = 0; i < board.userStoriesOnBoard.Count; i++)
+                        for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
                         {
-                            if (board.userStoriesOnBoard[i].Id == userStory.Id)
+                            if (board.UserStoriesOnBoard[i].Id == userStory.Id)
                             {
-                                board.userStoriesOnBoard[i] = userStory;
+                                board.UserStoriesOnBoard[i] = userStory;
 
                                 UpdateBoard(board);
 
@@ -202,8 +184,6 @@ namespace UserStoryBoard.Services
                         }
                     }
                 }
-
-                //JsonFileUserStoryService.SaveJsonUserStories(userStories);
             }
         }
 
@@ -233,7 +213,7 @@ namespace UserStoryBoard.Services
             List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
 
             // Find the User Story to be deleted
-            foreach (UserStory us in newBoards[boardId].userStoriesOnBoard)
+            foreach (UserStory us in newBoards[boardId].UserStoriesOnBoard)
             {
                 if (us.Id == userStoryId)
                 {
@@ -245,7 +225,7 @@ namespace UserStoryBoard.Services
             // Remove it from the temporary list of boards, and save that to JSON
             if (userStoryToBeDeleted != null)
             {
-                newBoards[boardId].userStoriesOnBoard.Remove(userStoryToBeDeleted);
+                newBoards[boardId].UserStoriesOnBoard.Remove(userStoryToBeDeleted);
                 boardJsonService.SaveJsonBoards(newBoards);
             }
 

@@ -11,7 +11,8 @@ namespace UserStoryBoard.Models
     {
         public static int Columns { get; set; } = 4;
         public static string[] ColumnNames { get; set; } = new string[] { "To Do", "Doing", "To Test", "Done" };
-        public List<UserStory> userStoriesOnBoard { get; set; } = new List<UserStory>();
+        public List<UserStory> UserStoriesOnBoard { get; set; } = new List<UserStory>();
+        public Backlog BoardBacklog { get; private set; } = new Backlog();
 
         private static int nextId = 0;
 
@@ -30,6 +31,8 @@ namespace UserStoryBoard.Models
             Id = nextId++;
             //Columns = cols;
             Description = descr;
+
+            BoardBacklog.Name = name;
 
             CreationDate = DateTime.Now;
         }

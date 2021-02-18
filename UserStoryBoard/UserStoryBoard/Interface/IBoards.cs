@@ -20,8 +20,7 @@ namespace UserStoryBoard.Interface
 
         public void AddBoard(Board board);
 
-        public void AddUserStory(UserStory aUserStory, int boardId);
-
+        public void AddUserStory(UserStory aUserStory, int boardId, bool backlog);
 
         public void UpdateBoard(Board board);
         

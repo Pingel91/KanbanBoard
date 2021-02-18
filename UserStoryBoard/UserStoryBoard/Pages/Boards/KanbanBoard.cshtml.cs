@@ -15,7 +15,6 @@ namespace UserStoryBoard.Pages
         [BindProperty]
         public UserStory UserStory { get; set; }
 
-        public List<UserStory> UserStories { get; private set; }
 
         private int boardId;
 

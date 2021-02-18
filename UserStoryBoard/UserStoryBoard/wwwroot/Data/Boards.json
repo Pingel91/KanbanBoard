@@ -1,46 +1,80 @@
 [
   {
-    "userStoriesOnBoard": [
+    "UserStoriesOnBoard": [
       {
-        "BusinessValue": 2,
-        "Priority": 2,
-        "StoryPoints": "nej",
-        "BoardId": 0,
-        "ColumnId": 1,
-        "Id": 0,
-        "Name": "Test 2",
-        "Description": "23fas",
-        "CreationDate": "0001-01-01T00:00:00"
-      },
-      {
-        "BusinessValue": 2,
-        "Priority": 2,
-        "StoryPoints": "nej",
+        "BusinessValue": 8,
+        "Priority": 9,
+        "StoryPoints": "Stor",
         "BoardId": 0,
         "ColumnId": 0,
         "Id": 0,
-        "Name": "Test",
-        "Description": "sadas",
+        "Name": "Kanban Board US",
+        "Description": "User Story lavet direkte på Kanban Board",
         "CreationDate": "0001-01-01T00:00:00"
       }
     ],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [
+        {
+          "BusinessValue": 9,
+          "Priority": 9,
+          "StoryPoints": "Kæmpe",
+          "BoardId": 0,
+          "ColumnId": 0,
+          "Id": 0,
+          "Name": "Kanban Board Backlog",
+          "Description": "User Story lavet på Backlog",
+          "CreationDate": "0001-01-01T00:00:00"
+        }
+      ],
+      "Id": 0,
+      "Name": "Kanban Board 1 Backlog",
+      "Description": "The backlog for Kanban Board 1",
+      "CreationDate": "2021-02-18T14:30:47.3688875+01:00"
+    },
     "Id": 0,
     "Name": "Kanban Board 1",
-    "Description": "Pretty simple Kanban Board 1. Long description is very very nice, so now we can see how that will look!",
-    "CreationDate": "2021-02-18T11:10:25.7189657+01:00"
+    "Description": "Pretty simple Kanban Board 1",
+    "CreationDate": "2021-02-18T14:30:47.3689579+01:00"
   },
   {
-    "userStoriesOnBoard": [],
+    "UserStoriesOnBoard": [],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [
+        {
+          "BusinessValue": 3,
+          "Priority": 3,
+          "StoryPoints": "asd",
+          "BoardId": 1,
+          "ColumnId": 0,
+          "Id": 0,
+          "Name": "Test 2",
+          "Description": "sadas",
+          "CreationDate": "0001-01-01T00:00:00"
+        }
+      ],
+      "Id": 1,
+      "Name": "Caspars Test Board Backlog",
+      "Description": "The backlog for Caspars Test Board",
+      "CreationDate": "2021-02-18T14:30:47.3689644+01:00"
+    },
     "Id": 1,
     "Name": "Caspars Test Board",
     "Description": "Caspars mega cool board",
-    "CreationDate": "2021-02-18T11:10:25.7189771+01:00"
+    "CreationDate": "2021-02-18T14:30:47.3689647+01:00"
   },
   {
-    "userStoriesOnBoard": [],
+    "UserStoriesOnBoard": [],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [],
+      "Id": 2,
+      "Name": "Board Backlog",
+      "Description": "The backlog for Board",
+      "CreationDate": "2021-02-18T14:30:47.3689658+01:00"
+    },
     "Id": 2,
     "Name": "Board",
     "Description": "wot",
-    "CreationDate": "2021-02-18T11:10:25.7189779+01:00"
+    "CreationDate": "2021-02-18T14:30:47.3689661+01:00"
   }
 ]

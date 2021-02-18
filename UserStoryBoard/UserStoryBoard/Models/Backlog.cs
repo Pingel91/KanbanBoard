@@ -9,18 +9,12 @@ namespace UserStoryBoard.Models
     {
         public static int Columns { get; set; } = 4;
         public static string[] ColumnNames { get; set; } = new string[] { "Lav ", "Mellem", "Høj", "Haster" };
-        public List<UserStory> userStoriesInBacklog { get; set; } = new List<UserStory>();
+        public List<UserStory> UserStoriesInBacklog { get; set; } = new List<UserStory>();
 
         private static int nextId = 0;
 
         public Backlog()
         {
-        }
-
-        public Backlog(string name) : base(name)
-        {
-            Id = nextId++;
-            CreationDate = DateTime.Now;
         }
 
         public Backlog(string name, string descr) : base(name)

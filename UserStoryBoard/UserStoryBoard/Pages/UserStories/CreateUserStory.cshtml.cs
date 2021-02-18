@@ -21,19 +21,23 @@ namespace UserStoryBoard.Pages.UserStories
         //private JsonFileUserStoryService userStoryService;
         //private UserStoryService userStoryService;
 
+        private bool inBacklog;
+
         public CreateUserStoryModel(IBoards repo)
         {
             boards = repo;
             //boardService = bService;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, bool backlog)
         {
             BoardId = id;
+            inBacklog = backlog;
+
             return Page();
         }
 
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(int id, bool backlog)
         {
             BoardId = id;
             UserStory.BoardId = id;
@@ -42,9 +46,18 @@ namespace UserStoryBoard.Pages.UserStories
             {
                 return Page();
             }
-            boards.AddUserStory(UserStory, id);
 
-            return Redirect("~/Boards/KanbanBoard/" + id);
+            boards.AddUserStory(UserStory, id, backlog);
+
+            if (backlog)
+                return Redirect("~/Backlogs/BacklogUserStory/" + id);
+            else
+                return Redirect("~/Boards/KanbanBoard/" + id);
+        }
+
+        public bool InBacklog()
+        {
+            return inBacklog;
         }
     }
 }

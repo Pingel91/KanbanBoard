@@ -33,8 +33,9 @@ namespace UserStoryBoard.Interface
       
 
         public UserStory DeleteUserStory(int userStoryId, int boardId);
-        
-       
-        
+        public List<UserStory> GetUserStoriesInBacklog(int boardId);
+
+
+
     }
 }

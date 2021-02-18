@@ -15,11 +15,13 @@ namespace UserStoryBoard.Services
         //private List<UserStory> userStories;
         //private int totalMockUserStories = 0;
         private JsonFileBoards boardJsonService;
+        private BacklogJsonService backlogJsonService;
 
         // CONSTRUCTOR -------------------------------------------------------------------
-        public BoardService(JsonFileBoards bJsonService)
+        public BoardService(JsonFileBoards bJsonService, BacklogJsonService BLJsonService)
         {
             boardJsonService = bJsonService;
+            backlogJsonService = BLJsonService;
             //userStories = MockUserStories.GetMockUserStories();
 
             // RUN THIS ONCE
@@ -57,6 +59,16 @@ namespace UserStoryBoard.Services
 
             return null;
         }
+        public List<UserStory> GetUserStoriesInBacklog(int boardId)
+        {
+            foreach (Backlog b in backlogJsonService.GetJsonBacklogs())
+            {
+                if (b.Id == boardId)
+                    return b.userStoriesInBacklog;
+            }
+
+            return null;
+        }
 
         // GET SPECIFIC OBJECT -----------------------------------------------------------
         public Board GetBoard(int id)
@@ -90,6 +102,22 @@ namespace UserStoryBoard.Services
 
             return null;
         }
+
+        public Backlog GetBacklog(int boardId)
+        {
+            Backlog theBacklog = null;
+            foreach (Backlog bl in backlogJsonService.GetJsonBacklogs())
+            {
+                if (bl.Id == boardId)
+                {
+                    theBacklog = bl;
+                }
+                
+            }
+
+            return theBacklog;
+        }
+        
 
         // ADD ---------------------------------------------------------------------------
         public void AddBoard(Board board)

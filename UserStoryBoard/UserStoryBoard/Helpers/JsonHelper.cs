@@ -8,7 +8,7 @@ namespace UserStoryBoard.Helpers
 {
     public class JsonHelper
     {
-        public static void ClearBoards(string filename)
+        public static void ClearFiles(string filename)
         {
             if (File.Exists(filename))
             {
@@ -30,6 +30,22 @@ namespace UserStoryBoard.Helpers
                 {
                     string jsonString = File.ReadAllText(filename);
                     jsonObject = JsonConvert.DeserializeObject<List<Board>>(jsonString);
+                }
+                catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
+            }
+
+            return jsonObject;
+        } 
+        public static List<Backlog> ReadBacklogs(string filename)
+        {
+            List<Backlog> jsonObject = new List<Backlog>();
+
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    string jsonString = File.ReadAllText(filename);
+                    jsonObject = JsonConvert.DeserializeObject<List<Backlog>>(jsonString);
                 }
                 catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
             }
@@ -59,9 +75,29 @@ namespace UserStoryBoard.Helpers
             try
             {
                 // DELETE EVERYTHING (⊙_⊙;)
-                ClearBoards(filename);
+                ClearFiles(filename);
 
                 string jsonString = JsonConvert.SerializeObject(boards,
+                    Formatting.Indented);
+
+                File.WriteAllText(filename, jsonString);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public static bool WriteBacklogs(List<Backlog> backlogs, string filename)
+        {
+            try
+            {
+                // DELETE EVERYTHING (⊙_⊙;)
+                ClearFiles(filename);
+
+                string jsonString = JsonConvert.SerializeObject(backlogs,
                     Formatting.Indented);
 
                 File.WriteAllText(filename, jsonString);

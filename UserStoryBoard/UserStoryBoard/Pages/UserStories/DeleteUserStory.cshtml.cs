@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UserStoryBoard.Interface;
 using UserStoryBoard.Models;
 using UserStoryBoard.Services;
+
 
 namespace UserStoryBoard.Pages
 {
@@ -16,21 +18,22 @@ namespace UserStoryBoard.Pages
         public UserStory UserStory { get; set; }
         
 
-        private BoardService boardService;
+       // private BoardService boardService;
+        IBoards boards;
 
-        public DeleteUserStoryModel(BoardService bService)
+        public DeleteUserStoryModel(IBoards repo)
         {
-            boardService = bService;
+            boards = repo;
         }
         public void OnGet(int id, int boardId)
         {
-            UserStory = boardService.GetUserStory(id, boardId);
+            UserStory = boards.GetUserStory(id, boardId);
             
         }
 
         public IActionResult OnPost(int id, int boardId)
         {
-            boardService.DeleteUserStory(id, boardId);
+            boards.DeleteUserStory(id, boardId);
             return Redirect("~/Boards/KanbanBoard/" + boardId);
         }
     }

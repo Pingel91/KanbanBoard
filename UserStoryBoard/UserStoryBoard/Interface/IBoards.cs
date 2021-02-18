@@ -8,7 +8,8 @@ namespace UserStoryBoard.Interface
 {
     public interface IBoards
     {
-
+        public List<Board> GetAllBoards();
+       
 
         public List<UserStory> GetUserStories(int boardId);
         

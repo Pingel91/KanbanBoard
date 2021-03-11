@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace UserStoryBoard.Models
 {
-    public class Board : CardTemplate
+    public class Board : InfoTemplate
     {
         public static int Columns { get; set; } = 4;
         public static string[] ColumnNames { get; set; } = new string[] { "To Do", "Doing", "To Test", "Done" };

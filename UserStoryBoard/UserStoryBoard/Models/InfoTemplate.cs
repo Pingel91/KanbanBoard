@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UserStoryBoard.Models
 {
-    public class CardTemplate
+    public class InfoTemplate
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,12 +14,12 @@ namespace UserStoryBoard.Models
 
         private static int nextId = 0;
 
-        public CardTemplate()
+        public InfoTemplate()
         {
 
         }
 
-        public CardTemplate (string name)
+        public InfoTemplate (string name)
         {
             Id = nextId++;
             CreationDate = DateTime.Now;

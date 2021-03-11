@@ -11,10 +11,13 @@ namespace UserStoryBoard.Services
 {
     public class BoardService : IBoards
     {
-        // PROPERTIES --------------------------------------------------------------------
+        // PROPERTIES ------------------------------------------------------------------------------------------------------------------------------ PROPERTIES
         private JsonFileBoards boardJsonService;
+        private int nextCardId;
+        private int nextBoardId;
+        // WE NEED TO IMPLEMENT THIS AND SAVE WHAT CURRENT ID WE HAVE GOTTEN TO IN THE JSON. OTHERWISE WHEN YOU RESTART THE PROGRAM THE nextId will be 0!!!!!
 
-        // CONSTRUCTOR -------------------------------------------------------------------
+        // CONSTRUCTOR ----------------------------------------------------------------------------------------------------------------------------- CONSTRUCTOR
         public BoardService(JsonFileBoards bJsonService)
         {
             boardJsonService = bJsonService;
@@ -23,7 +26,7 @@ namespace UserStoryBoard.Services
             //boardJsonService.SaveJsonBoards(MockKanbanBoards.kanbanBoards);
         }
 
-        // GET LISTS ---------------------------------------------------------------------
+        // GET LISTS ------------------------------------------------------------------------------------------------------------------------------- GET LISTS
         public List<Board> GetAllBoards()
         {
             return boardJsonService.GetJsonBoards().ToList();
@@ -50,7 +53,7 @@ namespace UserStoryBoard.Services
             return null;
         }
 
-        // GET SPECIFIC OBJECT -----------------------------------------------------------
+        // GET SPECIFIC OBJECT --------------------------------------------------------------------------------------------------------------------- GET SPECIFIC OBJECT
         public Board GetBoard(int id)
         {
             Board theBoard = null;
@@ -111,9 +114,9 @@ namespace UserStoryBoard.Services
 
             return theBacklog;
         }
-        
 
-        // ADD ---------------------------------------------------------------------------
+
+        // ADD ------------------------------------------------------------------------------------------------------------------------------------- ADD
         public void AddBoard(Board board)
         {
             List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
@@ -121,7 +124,7 @@ namespace UserStoryBoard.Services
             boardJsonService.SaveJsonBoards(newBoards);
         }
 
-        public void AddUserStory(UserStory aUserStory, int boardId, bool backlog)
+        public void AddUserStory(UserStory userStory, int boardId, bool backlog)
         {
             Board b = null;
             List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
@@ -132,16 +135,16 @@ namespace UserStoryBoard.Services
                 {
                     // Add to backlog if we came from the Backlog page
                     if (backlog)
-                        board.BoardBacklog.UserStoriesInBacklog.Add(aUserStory);
+                        board.BoardBacklog.UserStoriesInBacklog.Add(userStory);
                     else
-                        board.UserStoriesOnBoard.Add(aUserStory);
+                        board.UserStoriesOnBoard.Add(userStory);
 
                     b = board;
 
                     boardJsonService.SaveJsonBoards(newBoards);
 
-                    Debug.WriteLine($"ADDED USER STORY '{aUserStory.Name}' TO BOARD '{board.Name}'");
-                    Debug.WriteLine($"USER STORY IS ON COLUMN '{aUserStory.ColumnId}'");
+                    Debug.WriteLine($"ADDED USER STORY '{userStory.Name}' TO BOARD '{board.Name}'");
+                    Debug.WriteLine($"USER STORY IS ON COLUMN '{userStory.ColumnId}'");
                 }
             }
             if (b != null)
@@ -150,13 +153,13 @@ namespace UserStoryBoard.Services
                 Debug.WriteLine($"USER STORIES ON THE BOARD:");
                 foreach (UserStory uS in b.UserStoriesOnBoard)
                 {
-                    Debug.WriteLine($"{aUserStory.Name}");
+                    Debug.WriteLine($"{userStory.Name}");
                 }
                 UpdateBoard(b);
             }
         }
 
-        // UPDATE ------------------------------------------------------------------------
+        // UPDATE ---------------------------------------------------------------------------------------------------------------------------------- UPDATE
         public void UpdateBoard(Board board)
         {
             if (board != null)
@@ -206,6 +209,12 @@ namespace UserStoryBoard.Services
                             {
                                 if (board.BoardBacklog.UserStoriesInBacklog[i].Id == userStory.Id)
                                 {
+                                    // Set column ID to the importance level - ONLY BECAUSE THIS IS IN THE BACKLOG
+                                    if (userStory.Priority >= 0 && userStory.Priority < 4)
+                                        userStory.ColumnId = userStory.Priority;
+                                    else userStory.ColumnId = 0;
+
+                                    // Update the user story in the list
                                     board.BoardBacklog.UserStoriesInBacklog[i] = userStory;
 
                                     UpdateBoard(board);
@@ -220,7 +229,7 @@ namespace UserStoryBoard.Services
             }
         }
 
-        // DELETE ------------------------------------------------------------------------
+        // DELETE ---------------------------------------------------------------------------------------------------------------------------------- DELETE
 
         public void DeleteBoardId(int boardId)
         {
@@ -268,6 +277,77 @@ namespace UserStoryBoard.Services
             }
 
             return userStoryToBeDeleted;
+        }
+
+        // MOVE TO/FROM BACKLOG -------------------------------------------------------------------------------------------------------------------- MOVE TO/FROM BACKLOG
+        public void MoveToBacklog (UserStory userStory, int boardId)
+        {
+            if (userStory != null)
+            {
+                foreach (Board board in boardJsonService.GetJsonBoards())
+                {
+                    if (board.Id == boardId)
+                    {
+                        Debug.WriteLine($"\n------Moving User Story: {userStory.Name} to Backlog\n");
+
+                        for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
+                        {
+                            if (board.UserStoriesOnBoard[i].Id == userStory.Id)
+                            {
+                                // Remove from the Main Board
+                                board.UserStoriesOnBoard.RemoveAt(i);
+
+                                // Set column ID to the importance level
+                                if (userStory.Priority >= 0 && userStory.Priority < 4)
+                                    userStory.ColumnId = userStory.Priority;
+                                else userStory.ColumnId = 0;
+
+                                // Add the user story to the Backlog
+                                board.BoardBacklog.UserStoriesInBacklog.Add(userStory);
+
+                                UpdateBoard(board);
+
+                                Debug.WriteLine($"\n------Moved User Story: {userStory.Name} to Backlog\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void MoveToBoard(UserStory userStory, int boardId)
+        {
+            if (userStory != null)
+            {
+                foreach (Board board in boardJsonService.GetJsonBoards())
+                {
+                    if (board.Id == boardId)
+                    {
+                        Debug.WriteLine($"\n------Moving User Story: {userStory.Name} to Board\n");
+
+                        for (int i = 0; i < board.BoardBacklog.UserStoriesInBacklog.Count; i++)
+                        {
+                            if (board.BoardBacklog.UserStoriesInBacklog[i].Id == userStory.Id)
+                            {
+                                // Remove from the Main Board
+                                board.BoardBacklog.UserStoriesInBacklog.RemoveAt(i);
+
+                                // Set column ID to 0
+                                userStory.ColumnId = 0;
+
+                                // Add the user story to the Backlog
+                                board.UserStoriesOnBoard.Add(userStory);
+
+                                UpdateBoard(board);
+
+                                Debug.WriteLine($"\n------Moved User Story: {userStory.Name} to Board\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -38,8 +38,20 @@ namespace UserStoryBoard.Pages
             if (result > -1 && result < Board.Columns)
             {
                 updated.ColumnId = result; // FUCK THIS
+                if (backlog) updated.Priority = result; // IF WE ARE IN THE BACKLOG, REMEMBER TO UPDATE THE PRIORITY AS WELL, AS THAT'S WHAT THE COLUMNS REPRESENT.
+
                 boards.UpdateUserStory(updated, boards.GetBoard(boardId).Id, backlog);
             }
+
+            return Page();
+        }
+
+        public IActionResult OnGetMovedUserStoryFromBacklog(int boardId, int userStoryId)
+        {
+            UserStory updated = boards.GetUserStory(userStoryId, boardId, true);
+
+            updated.ColumnId = 0; // FUCK THIS
+            boards.MoveToBoard(updated, boards.GetBoard(boardId).Id);
 
             return Page();
         }

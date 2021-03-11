@@ -9,7 +9,7 @@
                 <i class="fa fa-plus"></i>
             </a>
             <a class="btn btn-info" type="button" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.GetCurrentBoard().Id" asp-route-backlog=@false>
-                <i class="fa fa-book"></i>
+                <i class="fa fa-folder-open"></i>
             </a>
         </div>
         <div class="row align-items-start">
@@ -46,6 +46,9 @@
                                     </a>
                                     <a class="btn btn-dark m-sm-1" type="button" asp-page="BacklogUserStory" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(1)" asp-page-handler="Column">
                                         <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                    <a class="btn btn-info m-sm-1" type="button" asp-page="../Boards/KanbanBoard" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId" asp-route-backlog="@false" asp-page-handler="MovedUserStoryFromBacklog">
+                                        <i class="fa fa-step-forward"></i>
                                     </a>
                                 </div>
                             </div>

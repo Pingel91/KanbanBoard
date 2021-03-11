@@ -1,4 +1,4 @@
-﻿@page "{id:int}/{boardId:int}" 
+﻿@page "{id:int}/{boardId:int}/{backlog:bool}" 
 @model UserStoryBoard.Pages.DeleteUserStoryModel
 @{
 }
@@ -12,8 +12,17 @@
         <button type="submit" class="btn btn-danger">
             Yes
         </button>
-        <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">
-            No
-        </a>
+        @if (Model.IsBacklog == false)
+        {
+            <a class="btn btn-primary" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId" asp-route-backlog="@Model.IsBacklog">
+                No
+            </a>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-page="../Backlogs/BacklogUserStory" asp-route-id="@Model.UserStory.BoardId" asp-route-backlog="@Model.IsBacklog">
+                No
+            </a>
+        }
     </form>
 </div>

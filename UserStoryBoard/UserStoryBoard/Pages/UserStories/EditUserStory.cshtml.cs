@@ -18,27 +18,36 @@ namespace UserStoryBoard.Pages.UserStories
         [BindProperty]
         public UserStory UserStory { get; set; }
 
+        public bool IsBacklog;
+
         public EditUserStoryModel(IBoards repo)
         {
             boards = repo;
         }
 
-        public IActionResult OnGet(int id, int boardId)
+        public IActionResult OnGet(int id, int boardId, bool backlog)
         {
-            UserStory = boards.GetUserStory(id, boardId);
+            IsBacklog = backlog;
+
+            UserStory = boards.GetUserStory(id, boardId, backlog);
 
             return Page();
         }
 
-        public IActionResult OnPost(int id, int boardId)
+        public IActionResult OnPost(int id, int boardId, bool backlog)
         {
+            IsBacklog = backlog;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            boards.UpdateUserStory(UserStory, boardId);
+            boards.UpdateUserStory(UserStory, boardId, backlog);
 
-            return Redirect("~/Boards/KanbanBoard/" + boardId);
+            if (backlog == false)
+                return Redirect("~/Boards/KanbanBoard/" + boardId + "/" + backlog);
+            else
+                return Redirect("~/Backlogs/BacklogUserStory/" + boardId + "/" + backlog);
         }
     }
 }

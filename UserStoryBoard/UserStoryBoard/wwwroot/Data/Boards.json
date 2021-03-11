@@ -2,28 +2,28 @@
   {
     "UserStoriesOnBoard": [
       {
-        "BusinessValue": 8,
-        "Priority": 9,
-        "StoryPoints": "Stor",
+        "BusinessValue": 9,
+        "Priority": 99,
+        "StoryPoints": "9999",
         "BoardId": 0,
         "ColumnId": 0,
         "Id": 0,
-        "Name": "Kanban Board US",
-        "Description": "User Story lavet direkte på Kanban Board",
+        "Name": "Test",
+        "Description": "ASdddd",
         "CreationDate": "0001-01-01T00:00:00"
       }
     ],
     "BoardBacklog": {
       "UserStoriesInBacklog": [
         {
-          "BusinessValue": 9,
-          "Priority": 9,
-          "StoryPoints": "Kæmpe",
+          "BusinessValue": 333,
+          "Priority": 33,
+          "StoryPoints": "8",
           "BoardId": 0,
           "ColumnId": 0,
           "Id": 0,
-          "Name": "Kanban Board Backlog",
-          "Description": "User Story lavet på Backlog",
+          "Name": "Test af Backlog User Story",
+          "Description": "wtf is happening",
           "CreationDate": "0001-01-01T00:00:00"
         }
       ],

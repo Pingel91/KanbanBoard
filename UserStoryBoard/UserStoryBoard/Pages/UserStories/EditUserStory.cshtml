@@ -1,4 +1,4 @@
-﻿@page "{id:int}/{boardId:int}"
+﻿@page "{id:int}/{boardId:int}/{backlog:bool}"
 @model UserStoryBoard.Pages.UserStories.EditUserStoryModel
 @{
 }
@@ -45,5 +45,7 @@
     </div>
 </div>
 <div>
-    <a asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId">Back to UserStory Page</a>
+    @if (Model.IsBacklog == false)
+    { <a asp-page="../Boards/KanbanBoard" asp-route-id="@Model.UserStory.BoardId" asp-route-backlog="@Model.IsBacklog">Back to UserStory Page</a> }
+    else { <a asp-page="../Backlogs/BacklogUserStory" asp-route-id="@Model.UserStory.BoardId" asp-route-backlog="@Model.IsBacklog">Back to Backlog Page</a> }
 </div>

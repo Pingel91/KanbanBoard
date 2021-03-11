@@ -21,7 +21,7 @@ namespace UserStoryBoard.Pages.UserStories
         //private JsonFileUserStoryService userStoryService;
         //private UserStoryService userStoryService;
 
-        private bool inBacklog;
+        public bool IsBacklog;
 
         public CreateUserStoryModel(IBoards repo)
         {
@@ -32,7 +32,7 @@ namespace UserStoryBoard.Pages.UserStories
         public IActionResult OnGet(int id, bool backlog)
         {
             BoardId = id;
-            inBacklog = backlog;
+            IsBacklog = backlog;
 
             return Page();
         }
@@ -49,15 +49,10 @@ namespace UserStoryBoard.Pages.UserStories
 
             boards.AddUserStory(UserStory, id, backlog);
 
-            if (backlog)
-                return Redirect("~/Backlogs/BacklogUserStory/" + id);
+            if (backlog == false)
+                return Redirect("~/Boards/KanbanBoard/" + id + "/" + backlog);
             else
-                return Redirect("~/Boards/KanbanBoard/" + id);
-        }
-
-        public bool InBacklog()
-        {
-            return inBacklog;
+                return Redirect("~/Backlogs/BacklogUserStory/" + id + "/" + backlog);
         }
     }
 }

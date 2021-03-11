@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{id:int}/{backlog:bool}"
 @using global::UserStoryBoard.Models
 @model UserStoryBoard.Pages.BacklogUserStoryModel
 @{
@@ -8,7 +8,7 @@
             <a class="btn btn-success" type="button" asp-page="../UserStories/CreateUserStory" asp-route-id="@Model.GetCurrentBoard().Id" asp-route-backlog=@true>
                 <i class="fa fa-plus"></i>
             </a>
-            <a class="btn btn-info" type="button" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.GetCurrentBoard().Id">
+            <a class="btn btn-info" type="button" asp-page="../Boards/KanbanBoard" asp-route-id="@Model.GetCurrentBoard().Id" asp-route-backlog=@false>
                 <i class="fa fa-book"></i>
             </a>
         </div>
@@ -32,19 +32,19 @@
                                     <p class="card-text text-white">@userStory.Description</p>
                                 </div>
                                 <div class="card-footer m-sm-1">
-                                    <a class="btn btn-secondary m-sm-1" type="button" asp-page="../UserStories/UserStoryDetail" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                    <a class="btn btn-secondary m-sm-1" type="button" asp-page="../UserStories/UserStoryDetail" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId" asp-route-backlog="@true">
                                         <i class="fa fa-info-circle"></i>
                                     </a>
-                                    <a class="btn btn-warning m-sm-1" type="button" asp-page="../UserStories/EditUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                    <a class="btn btn-warning m-sm-1" type="button" asp-page="../UserStories/EditUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId" asp-route-backlog="@true">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-danger m-sm-1" type="button" asp-page="../UserStories/DeleteUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId">
+                                    <a class="btn btn-danger m-sm-1" type="button" asp-page="../UserStories/DeleteUserStory" asp-route-id="@userStory.Id" asp-route-boardId="@userStory.BoardId" asp-route-backlog="@true">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                    <a class="btn btn-dark m-sm-1" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(-1)" asp-page-handler="Column">
+                                    <a class="btn btn-dark m-sm-1" type="button" asp-page="BacklogUserStory" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(-1)" asp-page-handler="Column">
                                         <i class="fa fa-arrow-left"></i>
                                     </a>
-                                    <a class="btn btn-dark m-sm-1" type="button" asp-page="KanbanBoard" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(1)" asp-page-handler="Column">
+                                    <a class="btn btn-dark m-sm-1" type="button" asp-page="BacklogUserStory" asp-route-boardId="@userStory.BoardId" asp-route-userStoryId="@userStory.Id" asp-route-column="@(1)" asp-page-handler="Column">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>
                                 </div>

@@ -24,16 +24,16 @@ namespace UserStoryBoard.Pages.UserStories
             boards = repo;
         }
 
-        public void OnPost(int id, int boardId, int userId)
+        public void OnPost(int id, int boardId, int userId, bool backlog)
         {
             Debug.WriteLine("Post");
 
-            UserStory = boards.GetUserStory(id, boardId);
+            UserStory = boards.GetUserStory(id, boardId, backlog);
             UserStory.ColumnId = userId;
-            boards.UpdateUserStory(UserStory, UserStory.BoardId);
+            boards.UpdateUserStory(UserStory, boardId, backlog);
         }
 
-        public void OnGet(int id, int boardId, int userId)
+        public void OnGet(int id, int boardId, int userId, bool backlog)
         {
             Debug.WriteLine("Get");
 
@@ -42,9 +42,9 @@ namespace UserStoryBoard.Pages.UserStories
                 
             }
 
-            UserStory = boards.GetUserStory(id, boardId);
+            UserStory = boards.GetUserStory(id, boardId, backlog);
             UserStory.ColumnId = userId;
-            boards.UpdateUserStory(UserStory, boardId);
+            boards.UpdateUserStory(UserStory, boardId, backlog);
         }
     }
 }

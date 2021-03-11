@@ -15,6 +15,9 @@ namespace UserStoryBoard.Pages
         [BindProperty] 
         public UserStory UserStory { get; set; }
 
+        public bool IsBacklog;
+        public int ColumnsToDraw;
+
         public List<UserStory> UserStories { get; private set; }
         // private BoardService boardService;
         IBoards boards;
@@ -27,12 +30,15 @@ namespace UserStoryBoard.Pages
         {
             boards = repo;
         }
-        public void OnGet(int id, int boardId)
+        public void OnGet(int id, int boardId, bool backlog)
         {
+            IsBacklog = backlog;
+            ColumnsToDraw = backlog ? Backlog.Columns : Board.Columns; // If backlog is true, use backlog columns, else use board columns. This is just shorthand for if/else.
+
             this.boardId = boardId;
 
             UserStories = boards.GetUserStories(boardId);
-            UserStory = boards.GetUserStory(id, boardId);
+            UserStory = boards.GetUserStory(id, boardId, backlog);
         }
 
         public Board GetCurrentBoard()
@@ -41,7 +47,10 @@ namespace UserStoryBoard.Pages
         }
         public List<UserStory> GetUserStories()
         {
-            return boards.GetUserStories(boardId);
+            if (IsBacklog == false)
+                return boards.GetUserStories(boardId);
+            else
+                return boards.GetUserStoriesInBacklog(boardId);
         }
     }
 }

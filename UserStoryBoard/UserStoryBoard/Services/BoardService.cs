@@ -65,16 +65,30 @@ namespace UserStoryBoard.Services
             return theBoard;
         }
 
-        public UserStory GetUserStory(int id, int boardId)
+        public UserStory GetUserStory(int id, int boardId, bool backlog)
         {
             foreach (Board board in boardJsonService.GetJsonBoards())
             {
                 if (board.Id == boardId)
                 {
-                    for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
+                    // Check if we are in the backlog, or the main board.
+                    if (!backlog)
                     {
-                        if (board.UserStoriesOnBoard[i].Id == id)
-                            return board.UserStoriesOnBoard[i];
+                        // If we're in the main board, return the mathcing user story from the list directly on the board object.
+                        for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
+                        {
+                            if (board.UserStoriesOnBoard[i].Id == id)
+                                return board.UserStoriesOnBoard[i];
+                        }
+                    }
+                    else
+                    {
+                        // If we're in the backlog, go through the board and its attached backlog, and return the user story list on that.
+                        for (int i = 0; i < board.BoardBacklog.UserStoriesInBacklog.Count; i++)
+                        {
+                            if (board.BoardBacklog.UserStoriesInBacklog[i].Id == id)
+                                return board.BoardBacklog.UserStoriesInBacklog[i];
+                        }
                     }
                     break;
                 }
@@ -161,7 +175,7 @@ namespace UserStoryBoard.Services
         }
 
 
-        public void UpdateUserStory(UserStory userStory, int boardId)
+        public void UpdateUserStory(UserStory userStory, int boardId, bool backlog)
         {
             if (userStory != null)
             {
@@ -170,16 +184,35 @@ namespace UserStoryBoard.Services
                     if (board.Id == boardId)
                     {
                         Debug.WriteLine($"\n------Updating User Story: {userStory.Name}\n Entered board: {boardId}\n");
-                        for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
+
+                        if (!backlog)
                         {
-                            if (board.UserStoriesOnBoard[i].Id == userStory.Id)
+                            for (int i = 0; i < board.UserStoriesOnBoard.Count; i++)
                             {
-                                board.UserStoriesOnBoard[i] = userStory;
+                                if (board.UserStoriesOnBoard[i].Id == userStory.Id)
+                                {
+                                    board.UserStoriesOnBoard[i] = userStory;
 
-                                UpdateBoard(board);
+                                    UpdateBoard(board);
 
-                                Debug.WriteLine($"\n------Updated User Story: {userStory.Name}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
-                                break;
+                                    Debug.WriteLine($"\n------Updated User Story: {userStory.Name}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n");
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < board.BoardBacklog.UserStoriesInBacklog.Count; i++)
+                            {
+                                if (board.BoardBacklog.UserStoriesInBacklog[i].Id == userStory.Id)
+                                {
+                                    board.BoardBacklog.UserStoriesInBacklog[i] = userStory;
+
+                                    UpdateBoard(board);
+
+                                    Debug.WriteLine($"\n------Updated User Story: {userStory.Name}\n ID: {userStory.Id}\n - On board: {userStory.BoardId}\n - In backlog?: {backlog}");
+                                    break;
+                                }
                             }
                         }
                     }
@@ -207,13 +240,18 @@ namespace UserStoryBoard.Services
 
         }
 
-        public UserStory DeleteUserStory(int userStoryId, int boardId)
+        public UserStory DeleteUserStory(int userStoryId, int boardId, bool backlog)
         {
             UserStory userStoryToBeDeleted = null;
             List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
 
+            // This is just a quick way of writing an if-statement. 
+            /// Instead of writing the whole if/else thing, this question-mark operator 
+            /// just checks if the "backlog" is true or false, and sets the list to be the one or the other.
+            List<UserStory> userStoriesList = backlog ? newBoards[boardId].BoardBacklog.UserStoriesInBacklog : newBoards[boardId].UserStoriesOnBoard;
+
             // Find the User Story to be deleted
-            foreach (UserStory us in newBoards[boardId].UserStoriesOnBoard)
+            foreach (UserStory us in userStoriesList)
             {
                 if (us.Id == userStoryId)
                 {
@@ -225,7 +263,7 @@ namespace UserStoryBoard.Services
             // Remove it from the temporary list of boards, and save that to JSON
             if (userStoryToBeDeleted != null)
             {
-                newBoards[boardId].UserStoriesOnBoard.Remove(userStoryToBeDeleted);
+                userStoriesList.Remove(userStoryToBeDeleted);
                 boardJsonService.SaveJsonBoards(newBoards);
             }
 

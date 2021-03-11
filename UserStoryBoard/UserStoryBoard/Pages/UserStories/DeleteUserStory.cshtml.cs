@@ -16,25 +16,32 @@ namespace UserStoryBoard.Pages
         
         [BindProperty]
         public UserStory UserStory { get; set; }
-        
 
-       // private BoardService boardService;
+        public bool IsBacklog;
+
+        // private BoardService boardService;
         IBoards boards;
 
         public DeleteUserStoryModel(IBoards repo)
         {
             boards = repo;
         }
-        public void OnGet(int id, int boardId)
+
+        public void OnGet(int id, int boardId, bool backlog)
         {
-            UserStory = boards.GetUserStory(id, boardId);
-            
+            IsBacklog = backlog;
+
+            UserStory = boards.GetUserStory(id, boardId, backlog);
         }
 
-        public IActionResult OnPost(int id, int boardId)
+        public IActionResult OnPost(int id, int boardId, bool backlog)
         {
-            boards.DeleteUserStory(id, boardId);
-            return Redirect("~/Boards/KanbanBoard/" + boardId);
+            boards.DeleteUserStory(id, boardId, backlog);
+
+            if (backlog == false)
+                return Redirect("~/Boards/KanbanBoard/" + boardId + "/" + backlog);
+            else
+                return Redirect("~/Backlogs/BacklogUserStory/" + boardId + "/" + backlog);
         }
     }
 }

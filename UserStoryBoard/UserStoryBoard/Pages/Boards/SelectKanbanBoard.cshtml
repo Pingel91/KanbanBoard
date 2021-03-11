@@ -16,7 +16,7 @@
     <div class="card m-2">
         @* HEADER TITLE *@
         <div class="card-header p-0">
-            <a class="list-group-item list-group-item-info text-dark w-100 h-100" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id">
+            <a class="list-group-item list-group-item-info text-dark w-100 h-100" asp-page="KanbanBoard" asp-route-id="@Model.KanbanBoards[i].Id" asp-route-backlog="@false">
                 <strong class="text-dark">@Model.KanbanBoards[i].Name</strong> <span style="float:right"> Created: @Model.KanbanBoards[i].CreationDate.Day/@Model.KanbanBoards[i].CreationDate.Month/@Model.KanbanBoards[i].CreationDate.Year </span>
             </a>
         </div>

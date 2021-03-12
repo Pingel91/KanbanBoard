@@ -35,5 +35,10 @@ namespace UserStoryBoard.Interface
         public void DeleteBoardId(int boardId);
       
         public UserStory DeleteUserStory(int userStoryId, int boardId, bool backlog);
+
+        // MOVE TO/FROM BACKLOG
+        public void MoveToBacklog(UserStory aUserStory, int boardId);
+
+        public void MoveToBoard(UserStory aUserStory, int boardId);
     }
 }

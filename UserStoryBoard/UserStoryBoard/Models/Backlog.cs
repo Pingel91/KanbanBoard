@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UserStoryBoard.Models
 {
-    public class Backlog : CardTemplate
+    public class Backlog : InfoTemplate
     {
         public static int Columns { get; set; } = 4;
         public static string[] ColumnNames { get; set; } = new string[] { "Lav ", "Mellem", "Høj", "Haster" };

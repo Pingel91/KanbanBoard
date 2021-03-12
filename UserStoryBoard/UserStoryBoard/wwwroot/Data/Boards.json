@@ -2,14 +2,25 @@
   {
     "UserStoriesOnBoard": [
       {
-        "BusinessValue": 9,
-        "Priority": 99,
-        "StoryPoints": "9999",
+        "BusinessValue": 2,
+        "Priority": 2,
+        "StoryPoints": "2",
         "BoardId": 0,
         "ColumnId": 0,
-        "Id": 0,
-        "Name": "Test",
-        "Description": "ASdddd",
+        "Id": 4,
+        "Name": "d",
+        "Description": "d",
+        "CreationDate": "0001-01-01T00:00:00"
+      },
+      {
+        "BusinessValue": 2,
+        "Priority": 2,
+        "StoryPoints": "23",
+        "BoardId": 0,
+        "ColumnId": 0,
+        "Id": 5,
+        "Name": "d",
+        "Description": "d",
         "CreationDate": "0001-01-01T00:00:00"
       }
     ],
@@ -17,13 +28,46 @@
       "UserStoriesInBacklog": [
         {
           "BusinessValue": 333,
-          "Priority": 33,
-          "StoryPoints": "8",
+          "Priority": 3,
+          "StoryPoints": "9",
+          "BoardId": 0,
+          "ColumnId": 3,
+          "Id": 0,
+          "Name": "Anden Test af Backlog User Story",
+          "Description": "awtf is happening",
+          "CreationDate": "0001-01-01T00:00:00"
+        },
+        {
+          "BusinessValue": 3,
+          "Priority": 0,
+          "StoryPoints": "2",
           "BoardId": 0,
           "ColumnId": 0,
-          "Id": 0,
-          "Name": "Test af Backlog User Story",
-          "Description": "wtf is happening",
+          "Id": 1,
+          "Name": "Test 2",
+          "Description": "2",
+          "CreationDate": "0001-01-01T00:00:00"
+        },
+        {
+          "BusinessValue": 2,
+          "Priority": 1,
+          "StoryPoints": "2",
+          "BoardId": 0,
+          "ColumnId": 1,
+          "Id": 2,
+          "Name": "Kanban Board US",
+          "Description": "asd",
+          "CreationDate": "0001-01-01T00:00:00"
+        },
+        {
+          "BusinessValue": 2,
+          "Priority": 2,
+          "StoryPoints": "2",
+          "BoardId": 0,
+          "ColumnId": 2,
+          "Id": 3,
+          "Name": "asd",
+          "Description": "asd",
           "CreationDate": "0001-01-01T00:00:00"
         }
       ],

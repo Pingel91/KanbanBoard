@@ -1,0 +1,44 @@
+[
+  {
+    "UserStoriesOnBoard": [],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [],
+      "Id": 0,
+      "Name": null,
+      "Description": null,
+      "CreationDate": "0001-01-01T00:00:00"
+    },
+    "Id": 0,
+    "Name": "Kanban Board 1",
+    "Description": "Pretty simple Kanban Board 1_edit",
+    "CreationDate": "0001-01-01T00:00:00"
+  },
+  {
+    "UserStoriesOnBoard": [],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [],
+      "Id": 0,
+      "Name": "Caspars Test Board",
+      "Description": null,
+      "CreationDate": "0001-01-01T00:00:00"
+    },
+    "Id": 1,
+    "Name": "Caspars Test Board",
+    "Description": "Caspars mega cool board",
+    "CreationDate": "2021-03-16T13:47:11.0207655+01:00"
+  },
+  {
+    "UserStoriesOnBoard": [],
+    "BoardBacklog": {
+      "UserStoriesInBacklog": [],
+      "Id": 0,
+      "Name": "Board",
+      "Description": null,
+      "CreationDate": "0001-01-01T00:00:00"
+    },
+    "Id": 2,
+    "Name": "Board",
+    "Description": "wot",
+    "CreationDate": "2021-03-16T13:47:11.0207662+01:00"
+  }
+]

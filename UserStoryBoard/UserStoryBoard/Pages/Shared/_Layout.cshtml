@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using UserStoryBoard.Pages.LogIn
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,18 +19,17 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         @*<li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-page="/UserStories/UserStories">User Stories</a>
-        </li>*@
+                    <a class="nav-link text-light" asp-area="" asp-page="/UserStories/UserStories">User Stories</a>
+                </li>*@
                         @*<li class="nav-item">
-        <a class="nav-link text-light" asp-area="" asp-page="KanbanBoard">Kanban Board</a>
-        </li>*@
+                <a class="nav-link text-light" asp-area="" asp-page="KanbanBoard">Kanban Board</a>
+                </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Boards/SelectKanbanBoard">Select Kanban Board</a>
                         </li>
@@ -49,17 +49,35 @@
                             <a class="nav-link text-light" asp-area="" asp-page="/4LevelsTests/SystemTest">Test Lab</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/User/GetUsers">AllUsers</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Backlogs/BacklogUserStory">Backlog</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-
+                        </li>*@
                     </ul>
                 </div>
+
+                <ul class="navbar-nav">
+                    @{
+                        if (LogInPageModel.LoggedInUser == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item nav-link mr-3">
+                                User: @LogInPageModel.LoggedInUser.UserName
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
+                            </li>
+                        }
+                    }
+                </ul>
+
             </div>
         </nav>
     </header>

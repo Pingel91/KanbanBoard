@@ -12,29 +12,29 @@ namespace UserStoryBoard.Services
     public class BoardService : IBoards
     {
         // PROPERTIES ------------------------------------------------------------------------------------------------------------------------------ PROPERTIES
-        private JsonFileBoards boardJsonService;
+        private JsonFileService<Board> boardJsonService;
         private int nextCardId;
         private int nextBoardId;
         // WE NEED TO IMPLEMENT THIS AND SAVE WHAT CURRENT ID WE HAVE GOTTEN TO IN THE JSON. OTHERWISE WHEN YOU RESTART THE PROGRAM THE nextId will be 0!!!!!
 
         // CONSTRUCTOR ----------------------------------------------------------------------------------------------------------------------------- CONSTRUCTOR
-        public BoardService(JsonFileBoards bJsonService)
+        public BoardService(JsonFileService<Board> bJsonService)
         {
             boardJsonService = bJsonService;
 
             // RUN THIS ONCE TO SET UP MOCK DATA
-            //boardJsonService.SaveJsonBoards(MockKanbanBoards.kanbanBoards);
+            //boardJsonService.SaveJsonObjects(MockKanbanBoards.kanbanBoards);
         }
 
         // GET LISTS ------------------------------------------------------------------------------------------------------------------------------- GET LISTS
         public List<Board> GetAllBoards()
         {
-            return boardJsonService.GetJsonBoards().ToList();
+            return boardJsonService.GetJsonObjects().ToList();
         }
 
         public List<UserStory> GetUserStories(int boardId)
         {
-            foreach (Board b in boardJsonService.GetJsonBoards())
+            foreach (Board b in boardJsonService.GetJsonObjects())
             {
                 if (b.Id == boardId)
                     return b.UserStoriesOnBoard;
@@ -44,7 +44,7 @@ namespace UserStoryBoard.Services
         }
         public List<UserStory> GetUserStoriesInBacklog(int boardId)
         {
-            foreach (Board b in boardJsonService.GetJsonBoards())
+            foreach (Board b in boardJsonService.GetJsonObjects())
             {
                 if (b.Id == boardId)
                     return b.BoardBacklog.UserStoriesInBacklog;
@@ -57,7 +57,7 @@ namespace UserStoryBoard.Services
         public Board GetBoard(int id)
         {
             Board theBoard = null;
-            foreach (Board b in boardJsonService.GetJsonBoards())
+            foreach (Board b in boardJsonService.GetJsonObjects())
             {
                 if (b.Id == id)
                 {
@@ -70,7 +70,7 @@ namespace UserStoryBoard.Services
 
         public UserStory GetUserStory(int id, int boardId, bool backlog)
         {
-            foreach (Board board in boardJsonService.GetJsonBoards())
+            foreach (Board board in boardJsonService.GetJsonObjects())
             {
                 if (board.Id == boardId)
                 {
@@ -103,7 +103,7 @@ namespace UserStoryBoard.Services
         public Backlog GetBacklog(int boardId)
         {
             Backlog theBacklog = null;
-            foreach (Board b in boardJsonService.GetJsonBoards())
+            foreach (Board b in boardJsonService.GetJsonObjects())
             {
                 if (b.Id == boardId)
                 {
@@ -119,15 +119,15 @@ namespace UserStoryBoard.Services
         // ADD ------------------------------------------------------------------------------------------------------------------------------------- ADD
         public void AddBoard(Board board)
         {
-            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+            List<Board> newBoards = boardJsonService.GetJsonObjects().ToList();
             newBoards.Add(board);
-            boardJsonService.SaveJsonBoards(newBoards);
+            boardJsonService.SaveJsonObjects(newBoards);
         }
 
         public void AddUserStory(UserStory userStory, int boardId, bool backlog)
         {
             Board b = null;
-            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+            List<Board> newBoards = boardJsonService.GetJsonObjects().ToList();
 
             foreach (Board board in newBoards)
             {
@@ -141,7 +141,7 @@ namespace UserStoryBoard.Services
 
                     b = board;
 
-                    boardJsonService.SaveJsonBoards(newBoards);
+                    boardJsonService.SaveJsonObjects(newBoards);
 
                     Debug.WriteLine($"ADDED USER STORY '{userStory.Name}' TO BOARD '{board.Name}'");
                     Debug.WriteLine($"USER STORY IS ON COLUMN '{userStory.ColumnId}'");
@@ -164,14 +164,14 @@ namespace UserStoryBoard.Services
         {
             if (board != null)
             {
-                List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+                List<Board> newBoards = boardJsonService.GetJsonObjects().ToList();
 
-                for (int i = 0; i < boardJsonService.GetJsonBoards().ToList().Count; i++)
+                for (int i = 0; i < boardJsonService.GetJsonObjects().ToList().Count; i++)
                 {
-                    if (boardJsonService.GetJsonBoards().ToList()[i].Id == board.Id)
+                    if (boardJsonService.GetJsonObjects().ToList()[i].Id == board.Id)
                     {
                         newBoards[i] = board;
-                        boardJsonService.SaveJsonBoards(newBoards);
+                        boardJsonService.SaveJsonObjects(newBoards);
                     }
                 }
             }
@@ -182,7 +182,7 @@ namespace UserStoryBoard.Services
         {
             if (userStory != null)
             {
-                foreach (Board board in boardJsonService.GetJsonBoards())
+                foreach (Board board in boardJsonService.GetJsonObjects())
                 {
                     if (board.Id == boardId)
                     {
@@ -233,7 +233,7 @@ namespace UserStoryBoard.Services
 
         public void DeleteBoardId(int boardId)
         {
-            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+            List<Board> newBoards = boardJsonService.GetJsonObjects().ToList();
 
             // Find the board to delete
             foreach (Board board in newBoards)
@@ -242,7 +242,7 @@ namespace UserStoryBoard.Services
                 {
                     // Remove it from the temporary list of boards, and save that to JSON
                     newBoards.Remove(board);
-                    boardJsonService.SaveJsonBoards(newBoards);
+                    boardJsonService.SaveJsonObjects(newBoards);
                     break;
                 }
             }
@@ -252,7 +252,7 @@ namespace UserStoryBoard.Services
         public UserStory DeleteUserStory(int userStoryId, int boardId, bool backlog)
         {
             UserStory userStoryToBeDeleted = null;
-            List<Board> newBoards = boardJsonService.GetJsonBoards().ToList();
+            List<Board> newBoards = boardJsonService.GetJsonObjects().ToList();
 
             // This is just a quick way of writing an if-statement. 
             /// Instead of writing the whole if/else thing, this question-mark operator 
@@ -273,7 +273,7 @@ namespace UserStoryBoard.Services
             if (userStoryToBeDeleted != null)
             {
                 userStoriesList.Remove(userStoryToBeDeleted);
-                boardJsonService.SaveJsonBoards(newBoards);
+                boardJsonService.SaveJsonObjects(newBoards);
             }
 
             return userStoryToBeDeleted;
@@ -284,7 +284,7 @@ namespace UserStoryBoard.Services
         {
             if (userStory != null)
             {
-                foreach (Board board in boardJsonService.GetJsonBoards())
+                foreach (Board board in boardJsonService.GetJsonObjects())
                 {
                     if (board.Id == boardId)
                     {
@@ -320,7 +320,7 @@ namespace UserStoryBoard.Services
         {
             if (userStory != null)
             {
-                foreach (Board board in boardJsonService.GetJsonBoards())
+                foreach (Board board in boardJsonService.GetJsonObjects())
                 {
                     if (board.Id == boardId)
                     {

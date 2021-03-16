@@ -10,31 +10,31 @@ using System.Diagnostics;
 
 namespace UserStoryBoard.Services
 {
-    public class JsonFileBoards
+    public class JsonFileService<T>
     {
         public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public JsonFileBoards(IWebHostEnvironment webHostEnvironment)
+        public JsonFileService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
 
         private string JsonFileName
         {
-            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Boards.json"); }
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", typeof(T) + ".json"); }
         }
 
-        public IEnumerable<Board> GetJsonBoards()
+        public IEnumerable<T> GetJsonObjects()
         {
-            try { return JsonHelper.ReadBoards(JsonFileName); }
+            try { return JsonHelper<T>.ReadObjects(JsonFileName); }
             catch { return null; }
         }
 
-        public void SaveJsonBoards(List<Board> boards)
+        public void SaveJsonObjects(List<T> objects)
         {
             try
             {
-                JsonHelper.WriteBoards(boards, JsonFileName);
+                JsonHelper<T>.WriteObjects(objects, JsonFileName);
                 Debug.WriteLine($"Successfully saved Boards list: {JsonFileName}");
             }
             catch (ArgumentException aExc)

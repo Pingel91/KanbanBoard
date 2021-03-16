@@ -6,7 +6,7 @@ using UserStoryBoard.Models;
 
 namespace UserStoryBoard.Helpers
 {
-    public class JsonHelper
+    public class JsonHelper<T>
     {
         public static void ClearFiles(string filename)
         {
@@ -20,32 +20,16 @@ namespace UserStoryBoard.Helpers
             }
         }
 
-        public static List<Board> ReadBoards(string filename)
+        public static List<T> ReadObjects(string filename)
         {
-            List<Board> jsonObject = new List<Board>();
+            List<T> jsonObject = new List<T>();
 
             if (File.Exists(filename))
             {
                 try
                 {
                     string jsonString = File.ReadAllText(filename);
-                    jsonObject = JsonConvert.DeserializeObject<List<Board>>(jsonString);
-                }
-                catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
-            }
-
-            return jsonObject;
-        } 
-        public static List<Backlog> ReadBacklogs(string filename)
-        {
-            List<Backlog> jsonObject = new List<Backlog>();
-
-            if (File.Exists(filename))
-            {
-                try
-                {
-                    string jsonString = File.ReadAllText(filename);
-                    jsonObject = JsonConvert.DeserializeObject<List<Backlog>>(jsonString);
+                    jsonObject = JsonConvert.DeserializeObject<List<T>>(jsonString);
                 }
                 catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
             }
@@ -53,52 +37,14 @@ namespace UserStoryBoard.Helpers
             return jsonObject;
         }
 
-        public static List<UserStory> ReadUserStory(string filename)
-        {
-            List<UserStory> jsonObject = new List<UserStory>();
-
-            if (File.Exists(filename))
-            {
-                try
-                {
-                    string jsonString = File.ReadAllText(filename);
-                    jsonObject = JsonConvert.DeserializeObject<List<UserStory>>(jsonString);
-                }
-                catch { throw new ArgumentException($"FILE WITH NAME '{filename}' DOESN'T EXIST"); }
-            }
-
-            return jsonObject;
-        }
-
-        public static bool WriteBoards(List<Board> boards, string filename)
+        public static bool WriteObjects(List<T> objects, string filename)
         {
             try
             {
                 // DELETE EVERYTHING (⊙_⊙;)
                 ClearFiles(filename);
 
-                string jsonString = JsonConvert.SerializeObject(boards,
-                    Formatting.Indented);
-
-                File.WriteAllText(filename, jsonString);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        
-        public static bool WriteBacklogs(List<Backlog> backlogs, string filename)
-        {
-            try
-            {
-                // DELETE EVERYTHING (⊙_⊙;)
-                ClearFiles(filename);
-
-                string jsonString = JsonConvert.SerializeObject(backlogs,
-                    Formatting.Indented);
+                string jsonString = JsonConvert.SerializeObject(objects, Formatting.Indented);
 
                 File.WriteAllText(filename, jsonString);
 

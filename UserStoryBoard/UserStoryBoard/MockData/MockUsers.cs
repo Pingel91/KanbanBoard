@@ -16,7 +16,7 @@ namespace UserStoryBoard.MockData
         };
 
 
-        public static List<User> GetMockBoards()
+        public static List<User> GetMockUsers()
         {
             return Users;
         }

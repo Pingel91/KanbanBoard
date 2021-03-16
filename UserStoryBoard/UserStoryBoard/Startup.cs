@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using UserStoryBoard.Interface;
 using UserStoryBoard.Services;
 
@@ -27,7 +30,17 @@ namespace UserStoryBoard
             services.AddSingleton<UserStoryService, UserStoryService>();
             services.AddTransient<JsonFileBoards>();
             services.AddSingleton<IBoards, BoardService>();
-            services.AddSingleton<UserService, UserService>();
+            services.AddSingleton<UserService,UserService>();
+            services.Configure<CookiePolicyOptions>(options => {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            }); services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions => {
+                cookieOptions.LoginPath = "/Login/LoginPage";
+            }); services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AuthorizeFolder("/Item");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //////////////////////////////////services.AddSingleton<UserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +58,7 @@ namespace UserStoryBoard
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

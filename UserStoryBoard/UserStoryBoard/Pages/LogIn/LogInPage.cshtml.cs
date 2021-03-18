@@ -45,9 +45,11 @@ namespace UserStoryBoard.Pages.LogIn
 
                 if (UserName == user.UserName )
                 {
-                    //var passwordHasher = new PasswordHasher<string>();
-                   // if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
-                    
+                    var passwordHasher = new PasswordHasher<string>();
+                    if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) ==
+                        PasswordVerificationResult.Success)
+                    {
+
                         LoggedInUser = user;
 
                         var claims = new List<Claim>
@@ -61,8 +63,7 @@ namespace UserStoryBoard.Pages.LogIn
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             new ClaimsPrincipal(claimsIdentity));
                         return RedirectToPage("/Index");
-                    
-
+                    }
                 }
 
             }

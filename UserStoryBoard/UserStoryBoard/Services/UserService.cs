@@ -9,8 +9,8 @@ namespace UserStoryBoard.Services
 {
     public class UserService
     {
-        private List<User> Users = new List<User>();
-        private JsonFileService<User> JsonFileService { get; set; }
+        private List<User> Users { get; set;  }
+        private JsonFileService<User> JsonFileService;
 
         public UserService(JsonFileService<User> jsonFileUserService)
         {
@@ -18,7 +18,7 @@ namespace UserStoryBoard.Services
 
             // Use this if it's the first time the program is started or there is no Json file yet.
             //Users = MockUsers.GetMockUsers();
-            //JsonFileService.SaveJsonObjects(Users);
+           // JsonFileService.SaveJsonObjects(Users);
 
             // Use this if you want to read from the existing Json file.
             Users = JsonFileService.GetJsonObjects().ToList();
@@ -27,6 +27,11 @@ namespace UserStoryBoard.Services
         public List<User> GetUsers()
         {
             return Users;
+        }
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+            JsonFileService.SaveJsonObjects(Users);
         }
     }
 }

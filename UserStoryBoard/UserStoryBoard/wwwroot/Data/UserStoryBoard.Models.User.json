@@ -2,16 +2,21 @@
   {
     "Id": 0,
     "UserName": "Cesper123",
-    "Password": "SupermanLover123"
+    "Password": "AQAAAAEAACcQAAAAELPF1YSmtVf1arfuU6rlBJuiwAg7IWTzYojM25LMtxpA2mwvz+SC0gB9zGoxyND/Cw=="
   },
   {
     "Id": 0,
     "UserName": "Putrick",
-    "Password": "ElskerCesper"
+    "Password": "AQAAAAEAACcQAAAAEIQpcMoLNlBA1U8Wd1kMV5RsWoBTDLSk0rYz+251POnBMpIht/Typ5Kxus6wiVIakg=="
   },
   {
     "Id": 0,
     "UserName": "saibot",
-    "Password": "Tobias"
+    "Password": "tobias"
+  },
+  {
+    "Id": 0,
+    "UserName": "admin",
+    "Password": "AQAAAAEAACcQAAAAEGd/tsq4w2GqrWnEvfRkszpcIK7TchrvHCrXz4Qs3HDHizBIIHhgQnw76VxkL9psBA=="
   }
 ]

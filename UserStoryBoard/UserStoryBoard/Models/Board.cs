@@ -18,6 +18,7 @@ namespace UserStoryBoard.Models
 
         public Board ()
         {
+            
         }
 
         public Board(string name) : base (name)

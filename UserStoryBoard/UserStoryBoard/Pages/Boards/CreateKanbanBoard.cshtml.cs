@@ -15,6 +15,7 @@ namespace UserStoryBoard.Pages.Boards
         [BindProperty]
         public Board KanbanBoard { get; set; }
 
+        private static int nextId = 0;
         //private BoardService boardService;
         public IBoards boards;
 
@@ -34,7 +35,9 @@ namespace UserStoryBoard.Pages.Boards
             {
                 return Page();
             }
-            
+
+            KanbanBoard.Id = nextId;
+            nextId++;
             boards.AddBoard(KanbanBoard);
 
             return RedirectToPage("SelectKanbanBoard");

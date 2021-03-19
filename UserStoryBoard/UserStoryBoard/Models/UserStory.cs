@@ -19,6 +19,7 @@ namespace UserStoryBoard.Models
 
         public UserStory()
         {
+            
         }
 
         public UserStory(string name) : base (name)
@@ -29,7 +30,7 @@ namespace UserStoryBoard.Models
 
         public UserStory(string name, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 0) : base(name)
         {
-            Id = nextId++;
+            Id = nextId;
             //Name = name;
             Description = description;
             BusinessValue = businessValue;
@@ -41,5 +42,6 @@ namespace UserStoryBoard.Models
             // Optional to set on creation
             ColumnId = column;
         } 
+        
     }
 }

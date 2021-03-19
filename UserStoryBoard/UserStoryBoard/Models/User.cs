@@ -19,7 +19,7 @@ namespace UserStoryBoard.Models
 
         public User(string userName, string password)
         {
-            Id = nextId;
+            Id = nextId++;
             UserName = userName;
             Password = password;
         }

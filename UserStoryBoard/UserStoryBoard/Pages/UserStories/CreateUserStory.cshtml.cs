@@ -20,7 +20,6 @@ namespace UserStoryBoard.Pages.UserStories
         IBoards boards;
         //private JsonFileUserStoryService userStoryService;
         //private UserStoryService userStoryService;
-        private static int nextId = 0;
         public bool IsBacklog;
 
         public CreateUserStoryModel(IBoards repo)
@@ -47,9 +46,12 @@ namespace UserStoryBoard.Pages.UserStories
                 return Page();
             }
 
-            UserStory.Id = nextId;
-            nextId++;
-            boards.AddUserStory(UserStory, id, backlog);
+            boards.AddUserStory
+                (
+                    new UserStory(UserStory.Name, UserStory.Description, UserStory.BusinessValue, UserStory.Priority, UserStory.StoryPoints, UserStory.BoardId), 
+                    id, 
+                    backlog
+                );
 
             if (backlog == false)
                 return Redirect("~/Boards/KanbanBoard/" + id + "/" + backlog);

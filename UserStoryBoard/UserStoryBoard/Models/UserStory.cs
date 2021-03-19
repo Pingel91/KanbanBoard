@@ -30,7 +30,7 @@ namespace UserStoryBoard.Models
 
         public UserStory(string name, string description, int businessValue, int priority, string storyPoints, int boardId, int column = 0) : base(name)
         {
-            Id = nextId;
+            Id = nextId++;
             //Name = name;
             Description = description;
             BusinessValue = businessValue;

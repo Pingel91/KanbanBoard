@@ -18,5 +18,15 @@
     "Id": 0,
     "UserName": "admin",
     "Password": "AQAAAAEAACcQAAAAEGd/tsq4w2GqrWnEvfRkszpcIK7TchrvHCrXz4Qs3HDHizBIIHhgQnw76VxkL9psBA=="
+  },
+  {
+    "Id": 0,
+    "UserName": "NyBruger",
+    "Password": "AQAAAAEAACcQAAAAEOqwkJf4yc5/zM8iSIrIG/tKKtQfVrxIDRBpTb2SfAn3Irl3nInWHNveukn17gQQYQ=="
+  },
+  {
+    "Id": 0,
+    "UserName": "henrik",
+    "Password": "AQAAAAEAACcQAAAAECiKekzzthRnRPxhBENnr3nmXhQ5y+YinODPGqTsqV7sgKcPzsUTTIsoL9Q5SNTcxQ=="
   }
 ]

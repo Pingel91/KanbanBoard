@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using UserStoryBoard.Interface;
 using UserStoryBoard.Services;
 using UserStoryBoard.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace UserStoryBoard
 {
@@ -34,6 +35,8 @@ namespace UserStoryBoard
 
             services.AddTransient<JsonFileService<Board>>();
             services.AddTransient<JsonFileService<User>>();
+
+            services.AddTransient<PasswordHasher<string>>();
 
             // Login Options
             services.Configure<CookiePolicyOptions>(options => {

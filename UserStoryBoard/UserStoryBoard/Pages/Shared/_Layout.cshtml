@@ -22,69 +22,55 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        @*<li class="nav-item">
-                    <a class="nav-link text-light" asp-area="" asp-page="/UserStories/UserStories">User Stories</a>
-                </li>*@
-                        @*<li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-page="KanbanBoard">Kanban Board</a>
-                </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Boards/SelectKanbanBoard">Select Kanban Board</a>
+                            <a class="nav-link text-light" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/TimeLine/TimeLine">SizeMeUp</a>
+                            <a class="nav-link text-light" asp-page="/Boards/SelectKanbanBoard">Select Kanban Board</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/InceptionDecks/InceptionsDeck">Inception Deck</a>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Report Intro Graphics Niceness.
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item nav-link text-light" asp-page="/TimeLine/TimeLine">SizeMeUp</a>
+                                    <a class="dropdown-item nav-link text-light" asp-page="/InceptionDecks/InceptionsDeck">Inception Deck</a>
+                                    <a class="dropdown-item nav-link text-light" asp-page="/CanvasModel/CanvasModel">Canvas Model</a>
+                                    <a class="dropdown-item nav-link text-light" asp-page="/SwotAnalyse/SwotAnalyse">Swot Analyse</a>
+                                    <a class="dropdown-item nav-link text-light" asp-page="/4LevelsTests/SystemTest">Test Lab</a>
+                                    <a class="dropdown-item nav-link text-light" asp-page="/Backlogs/BacklogUserStory">Backlog</a>
+                                </div>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/CanvasModel/CanvasModel">Canvas Model</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/SwotAnalyse/SwotAnalyse">Swot Analyse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/4LevelsTests/SystemTest">Test Lab</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Backlogs/BacklogUserStory">Backlog</a>
-                        </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>*@
                     </ul>
-                </div>
-                <ul class="navbar-nav">
-                    @{
-                        if (LogInPageModel.LoggedInUser == null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
-                            </li>
-                        }
-                        else
-                        {
-                             
-                                if ( LogInPageModel.LoggedInUser.UserName == "admin")
-                                {
+                    <ul class="navbar-nav">
+                        @{
+                            if (LogInPageModel.LoggedInUser == null)
+                            {
                                 <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                    <a class="nav-link" asp-page="/LogIn/LoginPage">Login</a>
                                 </li>
+                            }
+                            else
+                            {
+                                if (LogInPageModel.LoggedInUser.UserName == "admin")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-page="/Admin/CreateUser">Create User</a>
+                                    </li>
                                 }
                             
-                            <li class="nav-item nav-link mr-3">
-                                User: @LogInPageModel.LoggedInUser.UserName
-                            </li>
+                                <li class="nav-item nav-link mr-3">
+                                    User: @LogInPageModel.LoggedInUser.UserName
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-page="/LogIn/LogoutPage">Logout</a>
+                                </li>
+                            }
                         }
-                    }
-                </ul>
-
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
